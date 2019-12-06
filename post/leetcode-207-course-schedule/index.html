@@ -2,9 +2,9 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Git usage | Leon&#39;s Blog</title>
+<title>Leetcode 207. Course Schedule | Leon&#39;s Blog</title>
 <meta name="description" content="Stay hungry, stay foolish" />
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575635884952">
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575643508745">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://tobislee.github.io/">
-  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575635884952" alt="">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575643508745" alt="">
   </a>
   <h1 class="site-title">
     Leon&#39;s Blog
@@ -81,46 +81,93 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Git usage
+              Leetcode 207. Course Schedule
             </h2>
             <div class="post-info">
               <span>
-                2019-01-04
+                2019-12-06
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/RC5WV4Txuo" class="post-tag">
-                  # git usage
+                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
+                  # medium
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/Es-PD1jY3G" class="post-tag">
+                  # graph
                 </a>
               
             </div>
             
+              <img class="post-feature-image" src="https://tobislee.github.io//post-images/leetcode-cover.jpg" alt="">
+            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="强制让远程仓库与本地仓库同步">强制让远程仓库与本地仓库同步</h2>
-<blockquote>
-<p>git push --set-upstream git@github.com:xxx.git master --force</p>
-</blockquote>
-<h2 id="让本地仓库与远程仓库关联">让本地仓库与远程仓库关联</h2>
-<blockquote>
-<p>'origin' does not appear to be a git repository</p>
-</blockquote>
-<p><strong>解决办法:</strong></p>
-<blockquote>
-<p>git remote add origin git@github.com:xxx.git<br>
-git push -u origin master</p>
-</blockquote>
-<p>​</p>
+                <h2 id="description">Description</h2>
+<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
+<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: 2, [[1,0]] 
+Output: true
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0. So it is possible.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: 2, [[1,0],[0,1]]
+Output: false
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0, and to take course 0 you should
+             also have finished course 1. So it is impossible.
+</code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</li>
+<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
+</ol>
+<h2 id="idea">Idea</h2>
+<p>其实就是判断图中是否有环，使用拓扑排序，然后将入度为0的结点放入队列中，然后依次出队列，将结点数减一，并将当前结点指向的结点的入度减一，并判断其是否为零，如果为零则加入队列，如果不为零，继续循环。</p>
+<h2 id="solution">Solution</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
+        // adjacent table;
+        vector&lt;vector&lt;int&gt; &gt; adj(numCourses, vector&lt;int&gt;());
+        // degree of each node
+        vector&lt;int&gt; degree(numCourses, 0);
+        for (auto &amp;p : prerequisites) {
+            adj[p[1]].push_back(p[0]);
+            degree[p[0]]++;
+        }
+        // to save the elements which are degree = 0;
+        queue&lt;int&gt; q;
+        for (int i = 0; i &lt; numCourses; i++) if (degree[i] == 0) q.push(i);
+        while (!q.empty()) {
+            int node = q.front(); q.pop();
+            numCourses--;
+            for (auto next : adj[node]) {
+                if (--degree[next] == 0) q.push(next);
+            }
+        }
+        return numCourses == 0;
+    }
+};
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%BC%BA%E5%88%B6%E8%AE%A9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%90%8C%E6%AD%A5">强制让远程仓库与本地仓库同步</a></li>
-<li><a href="#%E8%AE%A9%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94">让本地仓库与远程仓库关联</a></li>
+<li><a href="#description">Description</a></li>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -133,9 +180,9 @@ git push -u origin master</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-01">
+            <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
               <h3 class="post-title">
-                吴恩达《Coursera机器学习》课程笔记（1）- 基础概念
+                吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习
               </h3>
             </a>
           </div>

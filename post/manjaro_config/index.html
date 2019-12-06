@@ -2,9 +2,9 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Manjaro系统美化与配置 | Gridea</title>
-<meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619615440">
+<title>Manjaro系统美化与配置 | Leon&#39;s Blog</title>
+<meta name="description" content="Stay hungry, stay foolish" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575635884952">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
@@ -20,13 +20,13 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://tobislee.github.io/">
-  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575619615440" alt="">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575635884952" alt="">
   </a>
   <h1 class="site-title">
-    Gridea
+    Leon&#39;s Blog
   </h1>
   <p class="site-description">
-    温故而知新
+    Stay hungry, stay foolish
   </p>
   <div class="menu-container">
     
@@ -58,7 +58,15 @@
   <div class="social-container">
     
       
+        <a href="https://github.com/TobisLee" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
     
+      
+        <a href="https://twitter.com/tlss55159552" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
       
     
       
@@ -80,23 +88,22 @@
                 2018-11-01
               </span>
               <span>
-                5 min read
+                4 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/Q2W9CGyUdt" class="post-tag">
-                  # linux
+                <a href="https://tobislee.github.io//tag/7aE-lWxz_" class="post-tag">
+                  # Linux
                 </a>
               
-                <a href="https://tobislee.github.io//tag/YNKzEwYKCY" class="post-tag">
-                  # configuration
+                <a href="https://tobislee.github.io//tag/Sppt0rpR-v" class="post-tag">
+                  # Customize
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Table of Contents</p>
-<ul>
+                <ul>
 <li><a href="#1-%E5%AE%89%E8%A3%85%E5%AE%8C%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%A6%96%E5%85%88%E8%A6%81%E5%81%9A%E7%9A%84%E5%B7%A5%E4%BD%9C">1. 安装完系统后首先要做的工作</a>
 <ul>
 <li><a href="#%E5%A2%9E%E5%8A%A0archlinuxcn%E7%9A%84%E5%9B%BD%E5%86%85%E6%BA%90">增加archlinuxcn的国内源</a></li>
@@ -164,91 +171,15 @@ export XMODIFIERS=”@im=fcitx”
 <h3 id="安装zsh">安装zsh</h3>
 <pre><code class="language-bash">$ sudo pacman -S zsh
 </code></pre>
-<p>do not make some setting</p>
+<p>不需要设置zsh</p>
 <pre><code class="language-bash">$ chsh -s /bin/zsh
 </code></pre>
 <p>reboot (do not log out then log back)</p>
 <h3 id="zsh-config">zsh config</h3>
 <p><a href="https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh">https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh</a></p>
 <p>将上面网页的内容复制到<code>.zshrc</code>中，重新打开即可（第一次开启会比较慢，因为要加载一些东西）</p>
-<h2 id="3-urxvt">3. urxvt</h2>
-<h3 id="安装urxvt">安装urxvt</h3>
-<p>在终端下运行</p>
-<pre><code class="language-bash">$ sudo pacman -S rxvt-unicode
-</code></pre>
-<h3 id="配置美化urxvt">配置美化urxvt</h3>
-<p>使用<code>vim .Xresources</code>进入urxvt的配置文件，复制以下内容</p>
-<pre><code class="language-bash">*foreground: 		#B8B8B8
-*foreground_bold: 	#B8B8B8
-*cursor: 		#548DB2
-*background:       	#2F343F
-!!*background: rgba(0, 0, 0, .7)
-
-!! black
-*color0: #4A4B52
-*color8: #FBFBFB
-!! red
-*color1: #DCA3A3
-*color9: #DCA3A3
-!! green
-*color2:  #4B8EA2
-*color10: #60B48A
-!! yellow
-*color3:  #DFAF8F
-*color11: #F0DFAF
-!! blue
-*color4:  #9AB8D7
-*color12: #496180
-!! magenta
-*color5:  #DC8CC3
-*color13: #EC93D3
-!! cyan
-*color6:  #69ADB0
-*color14: #3A999C
-!! white
-*color7:  #6B679C
-*color15: #9679BE
-
-URxvt.intensityStyles:	false
-URxvt.background:       [100]#2F343F
-URxvt.depth:		32
-URxvt.font: 		xft:WenQuanYi Micro Hei Mono:size=13
-URxvt.scrollBar:	false
-URxvt.cursorColor:	#548DB2
-
-!! Extensions
-URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
-URxvt.colorUL:		#4682B4
-!! url-select
-URxvt.keysym.M-u:	perl:url-select:select_next
-URxvt.url-select.launcher: linkhandler
-URxvt.url-select.underline: true
-!! keyboard-select:
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-!! resize-font
-URxvt.resize-font.smaller:	C-Down
-URxvt.resize-font.bigger:	C-Up
-!! Matcher
-URxvt.url-launcher:	linkhandler
-URxvt.matcher.button:	1
-
-!!rofi.color-enabled:	true
-!!rofi.color-window:	#000, #000, #000
-!!rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
-!!rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
-!!rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
-
-!!rofi.fake-transparency:	true
-rofi.lines:		5	
-!!rofi.bw:		0
-!!rofi.opacity:		&quot;10&quot;
-!!rofi.hide-scrollbar:	true
-rofi.width:		30	
-</code></pre>
-<p>之后在终端运行</p>
-<pre><code class="language-bash">$ xrdb -load ~/.Xresources 
-</code></pre>
-<p>再重新启动终端即可。</p>
+<h2 id="3-选择终端">3. 选择终端</h2>
+<p>Linux有许多终端可供选择，我经常使用的有<code>termite</code>, <code>alacritty</code>, <code>st</code> 。前两个都可以使用<code>pacman</code>直接安装，<code>st</code>推荐从源码编译安装。</p>
 <h2 id="4-neofetch">4. neofetch</h2>
 <h3 id="安装neofetch">安装neofetch</h3>
 <p>在终端下运行</p>
@@ -309,12 +240,7 @@ rofi.width:		30
 <li><a href="#zsh-config">zsh config</a></li>
 </ul>
 </li>
-<li><a href="#3-urxvt">3. urxvt</a>
-<ul>
-<li><a href="#%E5%AE%89%E8%A3%85urxvt">安装urxvt</a></li>
-<li><a href="#%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96urxvt">配置美化urxvt</a></li>
-</ul>
-</li>
+<li><a href="#3-%E9%80%89%E6%8B%A9%E7%BB%88%E7%AB%AF">3. 选择终端</a></li>
 <li><a href="#4-neofetch">4. neofetch</a>
 <ul>
 <li><a href="#%E5%AE%89%E8%A3%85neofetch">安装neofetch</a></li>

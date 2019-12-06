@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Gridea</title>
+<title>Machine Learning_04 Nerual Network Exercise | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619311610">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,54 +73,99 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              Machine Learning_04 Nerual Network Exercise
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2019-01-08
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/-bD5rI-m3" class="post-tag">
-                  # Gridea
+                <a href="https://tobislee.github.io//tag/h8LMdlPaR" class="post-tag">
+                  # exercise
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/hzH7AM1UU" class="post-tag">
+                  # ML
                 </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://tobislee.github.io//post-images/hello-gridea.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>吴恩达机器学习第四周 神经网络实验 主要代码</p>
+<h2 id="forward-propagation">forward propagation</h2>
+<p>条件：X中存着5000个黑白的数字图片(20 pixels * 20 pixels)，y中存着每张图片对应的数字（1-10），其中数字10代表图片0，三层神经网络，输入层400个节点，隐藏层25个节点，输出层10个节点</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \
+ at position 76: …\times 1}, \\\ \̲
+̲\Theta^{(1)} \i…'>X \in \mathbb R^{5000 \times 400}, \;
+y \in \mathbb R^{5000 \times 1}, \\\ \
+\Theta^{(1)} \in \mathbb R^{25 \times 401}, \;
+\Theta^{(2)} \in \mathbb R^{10 \times 26}
+</p>
+<pre><code class="language-matlab">X = [ones(m, 1) X]; 		% add bias unit column
+K = num_labels;				% K classes
+for i = 1 : m
+	X_i = X(i , :);  		% get ith example: 1 * 401
+	z_2 = X_i * Theta1';	% z_2: 1 * 25
+	a_2 = sigmoid(z_2);		% activation function
+	a_2 = [1 a_2];			% add bias unit: 1 * 26
+	z_3 = a_2 * Theta2';	% z_3: 1 * 10
+	h_theta_X_i = sigmoid(z_3);
+	
+	y_i = zeros(1, K)		% y_i: 1 * 10
+	y_i(y(i)) = 1;			% if y(i) = 3 then y_i: [0 0 1 0 0 0 0 0 0 0]
+	J = J + sum(-1 * y_i .* log(h_theta_X_i) - (1 - y_i) .* log(1 - h_theta_X_i));
+end
+J = 1 / m * J;
+
+% add regularizition
+temp_theta1 = Theta1;
+temp_theta2 = Theta2;
+temp_theta1(:, 1) = [];          % delete theta1 first column
+theta1_unroll = temp_theta1(:);  % unroll theta1
+temp_theta2(:, 1) = [];          % delete theta2 first column
+theta2_unroll = temp_theta2(:);  % unroll theta2
+
+J = J + lambda / (2 * m) * (theta1_unroll' * theta1_unroll + theta2_unroll' * theta2_unroll);
+</code></pre>
+<h2 id="use-backward-propagation-to-compute-gradient">use backward propagation to compute gradient</h2>
+<pre><code class="language-matlab">Delta_1 = zeros(size(Theta1));
+Delta_2 = zeros(size(Theta2));
+
+for i = 1 : m
+    a_1 = X(i, :);          % 1 * 401
+    z_2 = a_1 * Theta1';    % 1 * 25
+    a_2 = sigmoid(z_2);
+    a_2 = [1 a_2];          % 1 * 26
+    a_3 = sigmoid(a_2 * Theta2');    % 1 * 10
+    y_i = zeros(1,K);
+    y_i(y(i)) = 1;
+    delta_3 = a_3 - y_i;             % 1 * 10
+    delta_2 = delta_3 * Theta2 .* sigmoidGradient([1 z_2]);
+    Delta_1 = Delta_1 + delta_2(2:end)' * a_1;
+    Delta_2 = Delta_2 + delta_3' * a_2;
+end
+
+% add regularization
+Theta1(:, 1) = 0;
+Theta2(:, 1) = 0;
+Theta1_grad = 1 / m * Delta_1 + lambda / m * Theta1;
+Theta2_grad = 1 / m * Delta_2 + lambda / m * Theta2;
+
+% Unroll gradients
+grad = [Theta1_grad(:) ; Theta2_grad(:)];
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
+<li><a href="#forward-propagation">forward propagation</a></li>
+<li><a href="#use-backward-propagation-to-compute-gradient">use backward propagation to compute gradient</a></li>
 </ul>
 </li>
 </ul>
@@ -133,9 +178,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/图操作">
+            <a href="https://tobislee.github.io//post/Machine Learning_04">
               <h3 class="post-title">
-                图操作
+                Machine Learning(04)
               </h3>
             </a>
           </div>

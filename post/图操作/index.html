@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Gridea</title>
+<title>图操作 | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619311610">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,56 +73,108 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              图操作
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2018-11-02
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/-bD5rI-m3" class="post-tag">
-                  # Gridea
+                <a href="https://tobislee.github.io//tag/jXmHko2RiV" class="post-tag">
+                  # Data Structure
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/v_rY595DPk" class="post-tag">
+                  # Map
                 </a>
               
             </div>
             
-              <img class="post-feature-image" src="https://tobislee.github.io//post-images/hello-gridea.png" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>Table of Contents</p>
+<ul>
+<li><a href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86">广度优先遍历</a></li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86">深度优先遍历</a></li>
+<li><a href="#floyd">Floyd</a></li>
+</ul>
+<h1 id="广度优先遍历">广度优先遍历</h1>
+<pre><code class="language-c++">bool visited[MAX_VERTEX_NUM];
+void BFSTraverse(Graph g){
+    for(int i = 0; i &lt; g.vexnum; i++) visited[i] = false;
+	initQueue(q);
+    for(int i = 0; i &lt; g.vexnum; i++){
+        if(!visited[i]) BFS(g, i);
+    }
+}
+void BFS(Graph g, int v){
+    visit(v);					//访问v
+    visited[v] = true;			//对v做已访问标记
+    enQueue(q, v);				//顶点v入队列
+    while(!isEmpty(q)){
+        deQueue(q, v);
+        for(w = FirstNeighbor(g, v); w &gt;= 0; w= NextNeighbor(g, v, w)){
+            if(!visited[w]){		//w为v的尚未访问的节点
+                visit(w);			//访问w
+                visited[w] = true;	//对w做已访问标记
+                enQueue(q, w);		//顶点w入队列
+            }
+        }
+    }
+}
+</code></pre>
+<h1 id="深度优先遍历">深度优先遍历</h1>
+<pre><code class="language-c++">bool visited[MAX_VERTEX_NUM];
+void DFSTraverse(Graph g){
+    for(int i=0; i&lt;g.vexnum; i++) visited[i] = false;
+    for(int i=0; i&lt;g.vexnum; i++){
+        if(!visited[i]) DFS(g, i);
+    }
+}
+void DFS(Graph g, int v){
+    visit(v);
+    visited[v] = true;
+    for(w = FirstNeighbor(g, v); w&gt;=0; w = NextNeighbor(g, v)){
+        if(!visited[w]) DFS(g, w);
+    }
+}
+</code></pre>
+<h1 id="floyd">Floyd</h1>
+<pre><code class="language-c++">void allLength(int n){
+    //初始化矩阵
+    for(int i = 1; i &lt;= n; i++){
+        for (int j = i; j &lt;= n; j++){
+            a[i][j] = edge[i][j];
+            if(i != j &amp;&amp; a[i][j] &lt; max) path[i][j] = i;
+            else path[i][j] = -1;
+        }
+    }
+    for(int k = 1; k &lt;= n; k++){
+        for(int i = 1; i &lt;= n; i++){
+            if(i != k){
+                for(int j = 1; j &lt;= n; j++){
+                    if(j != k &amp;&amp; j != i &amp;&amp; a[i][k] &lt; max &amp;&amp;
+                       a[k][j] &lt; max &amp;&amp; a[i][k] + a[k][j] &lt; a[i][j]){
+                        a[i][j] = a[i][k] + a[k][j];
+                        path[i][j] = path[k][j];
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<hr>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
+<li><a href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86">广度优先遍历</a></li>
+<li><a href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86">深度优先遍历</a></li>
+<li><a href="#floyd">Floyd</a></li>
 </ul>
 
               </div>
@@ -130,15 +182,6 @@
           </article>
         </div>
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/图操作">
-              <h3 class="post-title">
-                图操作
-              </h3>
-            </a>
-          </div>
         
 
         

@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gridea</title>
+<title>Use mathjax in hugo | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619311610">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -70,125 +70,91 @@
   </div>
 </div>
 
-    
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Use mathjax in hugo
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-01-04
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/Ev4QOmZHpw" class="post-tag">
+                  # hugo usage
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>在<code>layouts/partials/</code>下添加<code>mathjax.html</code>文件，并添加下面代码：</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;
+        async
+        src=&quot;https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']], //将 '[[]]' 换成 '[]'
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; },
+         extensions: [&quot;AMSmath.js&quot;, &quot;AMSsymbols.js&quot;] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    // Fix &lt;code&gt; tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+&lt;/style&gt;
+</code></pre>
+<p>将此模板添加到<code>header.html</code>中，即可使用</p>
+<pre><code class="language-html">{{ partial &quot;mathjax.html&quot; . }}
+</code></pre>
+<p>本文章参考了匿蟒的博客，原博客链接<br>
+http://note.qidong.name/2018/03/hugo-mathjax/</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://tobislee.github.io//post/Machine Learning_01">
+              <h3 class="post-title">
+                Machine Learning(01)
+              </h3>
+            </a>
+          </div>
         
 
-<div class="archives-container">
-  
-    <h2 class="year">2019</h2>
-    
-      
-        <a href="https://tobislee.github.io//post/Machine Learning_04_Exercise" class="post">
-          <h2 class="post-title">
-            Machine Learning_04 Nerual Network Exercise
-          </h2>
-          <div class="time">2019-01-08</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/Machine Learning_04" class="post">
-          <h2 class="post-title">
-            Machine Learning(04)
-          </h2>
-          <div class="time">2019-01-07</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/Machine Learning_03" class="post">
-          <h2 class="post-title">
-            Machine Learning(03)
-          </h2>
-          <div class="time">2019-01-05</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/Machine Learning_02" class="post">
-          <h2 class="post-title">
-            Machine Learning(02)
-          </h2>
-          <div class="time">2019-01-04</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/git_usage" class="post">
-          <h2 class="post-title">
-            Git usage
-          </h2>
-          <div class="time">2019-01-04</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/use_mathjax_in_hugo" class="post">
-          <h2 class="post-title">
-            Use mathjax in hugo
-          </h2>
-          <div class="time">2019-01-04</div>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    <h2 class="year">2018</h2>
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <a href="https://tobislee.github.io//post/Machine Learning_01" class="post">
-          <h2 class="post-title">
-            Machine Learning(01)
-          </h2>
-          <div class="time">2018-12-26</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/hello-gridea" class="post">
-          <h2 class="post-title">
-            Hello Gridea
-          </h2>
-          <div class="time">2018-12-12</div>
-        </a>
-      
-    
-      
-        <a href="https://tobislee.github.io//post/图操作" class="post">
-          <h2 class="post-title">
-            图操作
-          </h2>
-          <div class="time">2018-11-02</div>
-        </a>
-      
-    
-  
-</div>
+        
 
-    
-        <div class="pagination-container">
-  
-  
-</div>
-
-    
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
   <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>

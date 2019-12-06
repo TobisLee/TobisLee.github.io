@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Git usage | Gridea</title>
+<title>排序 | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619615440">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,48 +73,117 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Git usage
+              排序
             </h2>
             <div class="post-info">
               <span>
-                2019-01-04
+                2018-11-02
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/RC5WV4Txuo" class="post-tag">
-                  # git usage
+                <a href="https://tobislee.github.io//tag/jXmHko2RiV" class="post-tag">
+                  # Data Structure
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="强制让远程仓库与本地仓库同步">强制让远程仓库与本地仓库同步</h2>
-<blockquote>
-<p>git push --set-upstream git@github.com:xxx.git master --force</p>
-</blockquote>
-<h2 id="让本地仓库与远程仓库关联">让本地仓库与远程仓库关联</h2>
-<blockquote>
-<p>'origin' does not appear to be a git repository</p>
-</blockquote>
-<p><strong>solution:</strong></p>
-<blockquote>
-<p>git remote add origin git@github.com:xxx.git</p>
-<p>git push -u origin master</p>
-</blockquote>
-<p>​</p>
+                <p>Table of Contents</p>
+<ul>
+<li><a href="#%E5%BF%AB%E6%8E%92">快排</a></li>
+<li><a href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">冒泡排序</a></li>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">直接插入排序</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">选择排序</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+</ul>
+<h1 id="快排">快排</h1>
+<pre><code class="language-c++">void QSort(int *a, int low, int high){
+    int left = low, right = high;
+    int pivot = a[low];
+    while(left &lt; right){
+        while(left &lt; right &amp;&amp; a[right] &gt;= pivot) right--;
+        a[left] = a[right];
+        while(left &lt; right &amp;&amp; a[left] &lt;= pivot) left++;
+        a[right] = a[left];
+    }
+    a[left] = pivot;
+    QSort(a, low, left-1);
+    QSort(a, left+1, high);
+}
+</code></pre>
+<h1 id="冒泡排序">冒泡排序</h1>
+<pre><code class="language-c++">void BubbleSort(int *a, int len){
+    bool swap = false;
+    for(int i = 0; i &lt; len; i++){
+        for(int j = len - 1; j &gt; i; j--){
+            if(a[j-1] &gt; a[j]){
+                swap(a[j-1], a[j]);
+                swap = true;
+            }
+        }
+        if(!flag) return ;
+    }
+}
+</code></pre>
+<h1 id="直接插入排序">直接插入排序</h1>
+<pre><code class="language-c++">void InsertSort(int *a, int len){
+    int i, j;
+    for (i = 2; i &lt;= n; i++){
+        if(a[i] &lt; a[i-1]){
+            a[0] = a[i];
+            for(j = i-1; a[j] &gt; a[0]; j--) a[j+1] = a[j];
+            a[j+1] = a[0];
+        }
+    }
+}
+</code></pre>
+<h1 id="选择排序">选择排序</h1>
+<pre><code class="language-c++">void SelectSort(int *a, int len){
+    for(int i = 0; i &lt; len; i++){
+        int min = i;
+        for(int j = i+1; j &lt; n; j++){
+            if(a[min] &gt; a[j]){
+                min = j;
+            }
+        }
+        if(min != i) swap(a[i], a[min]);
+    }
+}
+</code></pre>
+<h1 id="归并排序">归并排序</h1>
+<pre><code class="language-c++">void Merge(int *a, int *b, int low, int mid, int high){
+    for(int i = low; i &lt;= high; i++){
+        a[i] = b[i];
+    }
+    for(int i = low, j = mid+1, k=i; i &lt;= mid &amp;&amp; j &lt;= high; k++){
+        if(b[i] &lt;= b[j]) a[k] = b[i++];
+        else a[k] = b[j++];
+    }
+    //下面两个while只有一个会执行
+    while(i &lt;= mid) a[k+1] = b[i++];
+    while(j &lt;= high) a[k+1] = b[j++];
+}
+void MergeSort(int *a, int low, int high){
+    int mid = (low + high) / 2;
+    if(low &lt; high){
+        MergeSort(a, low, mid);
+        MergeSort(a, mid+1, high);
+        Merge(a, b, low, mid, high);
+    }
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%BC%BA%E5%88%B6%E8%AE%A9%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%90%8C%E6%AD%A5">强制让远程仓库与本地仓库同步</a></li>
-<li><a href="#%E8%AE%A9%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94">让本地仓库与远程仓库关联</a></li>
-</ul>
-</li>
+<li><a href="#%E5%BF%AB%E6%8E%92">快排</a></li>
+<li><a href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F">冒泡排序</a></li>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F">直接插入排序</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F">选择排序</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
 </ul>
 
               </div>
@@ -125,9 +194,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/use_mathjax_in_hugo">
+            <a href="https://tobislee.github.io//post/树操作">
               <h3 class="post-title">
-                Use mathjax in hugo
+                树操作
               </h3>
             </a>
           </div>

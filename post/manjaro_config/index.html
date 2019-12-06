@@ -1,0 +1,394 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manjaro系统美化与配置 | Gridea</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575619615440">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tobislee.github.io/">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575619615440" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Manjaro系统美化与配置
+            </h2>
+            <div class="post-info">
+              <span>
+                2018-11-01
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/Q2W9CGyUdt" class="post-tag">
+                  # linux
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/YNKzEwYKCY" class="post-tag">
+                  # configuration
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Table of Contents</p>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85%E5%AE%8C%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%A6%96%E5%85%88%E8%A6%81%E5%81%9A%E7%9A%84%E5%B7%A5%E4%BD%9C">1. 安装完系统后首先要做的工作</a>
+<ul>
+<li><a href="#%E5%A2%9E%E5%8A%A0archlinuxcn%E7%9A%84%E5%9B%BD%E5%86%85%E6%BA%90">增加archlinuxcn的国内源</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F">更新系统</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95">安装中文输入法</a></li>
+</ul>
+</li>
+<li><a href="#2-zsh">2. zsh</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85zsh">安装zsh</a></li>
+<li><a href="#zsh-config">zsh config</a></li>
+</ul>
+</li>
+<li><a href="#3-urxvt">3. urxvt</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85urxvt">安装urxvt</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96urxvt">配置美化urxvt</a></li>
+</ul>
+</li>
+<li><a href="#4-neofetch">4. neofetch</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85neofetch">安装neofetch</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8Cneofetch">运行neofetch</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEneofetch%E6%98%BE%E7%A4%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E7%89%87">配置neofetch显示自定义图片</a></li>
+</ul>
+</li>
+<li><a href="#5-fq">5. FQ</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85electron-ssrchrome%E4%BB%A5%E5%8F%8Achrome%E6%8F%92%E4%BB%B6switchomega">安装electron-ssr、chrome、以及chrome插件switchomega</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AEssr">设置SSR</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AEchrome%E4%BB%A3%E7%90%86">设置chrome代理</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-安装完系统后首先要做的工作">1. 安装完系统后首先要做的工作</h2>
+<h3 id="增加国内镜像源">增加国内镜像源</h3>
+<p>在命令行下运行</p>
+<pre><code class="language-bash">$ sudo pacman-mirrors -i -c China -m rank
+</code></pre>
+<p>然后选择你想要的镜像源</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2018/12/27/5c24753a94d3f.png" alt="选择你想要的镜像源"></figure>
+<p>点击两次OK即可，之后<code>/etc/pacman.d/mirrorlist</code>就会更新成国内源</p>
+<h3 id="添加archlinuxcn源">添加archlinuxcn源</h3>
+<p>在<code>/etc/pacman.conf</code>文件末尾添加两行：</p>
+<pre><code class="language-bash">[archlinuxcn]
+Server = &lt;https://mirrors.ustc.edu.cn/archlinuxcn/$arch&gt;
+</code></pre>
+<h3 id="更新系统">更新系统</h3>
+<pre><code class="language-bash">$ sudo pacman -Syyu
+$ sudo pacman -S archlinuxcn-keyring
+$ sudo pacman -Syyu
+</code></pre>
+<h3 id="安装中文输入法">安装中文输入法</h3>
+<pre><code class="language-bash">$ sudo pacman -S fcitx-im（fcitx fcitx-gtk2 fcitx-gtk3） 
+$ sudo pacman -S fcitx-configtool 
+$ sudo pacman -S fcitx-sogoupinyin
+</code></pre>
+<p>之后 <code>vim ~/.xprofile</code>在文件中（没有则新建）添加</p>
+<pre><code class="language-makefile">export GTK_IM_MODULE=fcitx 
+export QT_IM_MODULE=fcitx 
+export XMODIFIERS=”@im=fcitx”
+</code></pre>
+<p>登出之后再进入，就能正常使用输入法了</p>
+<h2 id="2-zsh">2. zsh</h2>
+<h3 id="安装zsh">安装zsh</h3>
+<pre><code class="language-bash">$ sudo pacman -S zsh
+</code></pre>
+<p>do not make some setting</p>
+<pre><code class="language-bash">$ chsh -s /bin/zsh
+</code></pre>
+<p>reboot (do not log out then log back)</p>
+<h3 id="zsh-config">zsh config</h3>
+<p><a href="https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh">https://github.com/skywind3000/vim/blob/master/etc/zshrc.zsh</a></p>
+<p>将上面网页的内容复制到<code>.zshrc</code>中，重新打开即可（第一次开启会比较慢，因为要加载一些东西）</p>
+<h2 id="3-urxvt">3. urxvt</h2>
+<h3 id="安装urxvt">安装urxvt</h3>
+<p>在终端下运行</p>
+<pre><code class="language-bash">$ sudo pacman -S rxvt-unicode
+</code></pre>
+<h3 id="配置美化urxvt">配置美化urxvt</h3>
+<p>使用<code>vim .Xresources</code>进入urxvt的配置文件，复制以下内容</p>
+<pre><code class="language-bash">*foreground: 		#B8B8B8
+*foreground_bold: 	#B8B8B8
+*cursor: 		#548DB2
+*background:       	#2F343F
+!!*background: rgba(0, 0, 0, .7)
+
+!! black
+*color0: #4A4B52
+*color8: #FBFBFB
+!! red
+*color1: #DCA3A3
+*color9: #DCA3A3
+!! green
+*color2:  #4B8EA2
+*color10: #60B48A
+!! yellow
+*color3:  #DFAF8F
+*color11: #F0DFAF
+!! blue
+*color4:  #9AB8D7
+*color12: #496180
+!! magenta
+*color5:  #DC8CC3
+*color13: #EC93D3
+!! cyan
+*color6:  #69ADB0
+*color14: #3A999C
+!! white
+*color7:  #6B679C
+*color15: #9679BE
+
+URxvt.intensityStyles:	false
+URxvt.background:       [100]#2F343F
+URxvt.depth:		32
+URxvt.font: 		xft:WenQuanYi Micro Hei Mono:size=13
+URxvt.scrollBar:	false
+URxvt.cursorColor:	#548DB2
+
+!! Extensions
+URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
+URxvt.colorUL:		#4682B4
+!! url-select
+URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.url-select.launcher: linkhandler
+URxvt.url-select.underline: true
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!! resize-font
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+!! Matcher
+URxvt.url-launcher:	linkhandler
+URxvt.matcher.button:	1
+
+!!rofi.color-enabled:	true
+!!rofi.color-window:	#000, #000, #000
+!!rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
+!!rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
+!!rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
+
+!!rofi.fake-transparency:	true
+rofi.lines:		5	
+!!rofi.bw:		0
+!!rofi.opacity:		&quot;10&quot;
+!!rofi.hide-scrollbar:	true
+rofi.width:		30	
+</code></pre>
+<p>之后在终端运行</p>
+<pre><code class="language-bash">$ xrdb -load ~/.Xresources 
+</code></pre>
+<p>再重新启动终端即可。</p>
+<h2 id="4-neofetch">4. neofetch</h2>
+<h3 id="安装neofetch">安装neofetch</h3>
+<p>在终端下运行</p>
+<pre><code class="language-bash">$ sudo pacman -S neofetch
+</code></pre>
+<h3 id="运行neofetch">运行neofetch</h3>
+<pre><code class="language-bash">$ neofetch
+</code></pre>
+<h3 id="配置neofetch显示自定义图片">配置neofetch显示自定义图片</h3>
+<p>首先运行</p>
+<pre><code class="language-bash">$ sudo pacman -S w3m imagemagick
+</code></pre>
+<p>安装所需依赖</p>
+<p>使用</p>
+<pre><code class="language-bash">$ vim ~/.config/neofetch/config.conf
+</code></pre>
+<p>进入neofetch的配置文件，找到<code># Backend Settings</code>，下面的内容就是跟显示自定义图片相关的，其中</p>
+<p><code>image_backend=&quot;w3m&quot;</code>：指用哪个工具显示，这里我们设置为<code>w3m</code></p>
+<p><code>image_source=&quot;wallpaper&quot;</code>：指显示的图片位置，这里我们设置为壁纸</p>
+<p><code>crop_mode=&quot;fit&quot;</code>：指图片填充的样式，这里我们设置为<code>fit</code>模式，即选取图片合适的尺寸，具体区别请查看<a href="https://github.com/dylanaraps/neofetch/wiki/What-is-Waifu-Crop%3F">crop-mode</a></p>
+<p><code>image_size=&quot;35%&quot;</code>：指图片显示的尺寸，这里我设置成原图片35%大小</p>
+<p><code>gap=5</code>：指图片与文字的间隔（可以为负值）</p>
+<p><code>Image offsets</code>：指图片距离左上角的距离，有<code>yoffset</code>、<code>xoffset</code>两种格式</p>
+<p>在<code>.zshrc</code>最后加入<code>neofetch</code>以便每次启动zsh时启动neofetch</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2018/12/24/5c20e0fda0f0b.png" alt="配置好neofetch的urxvt"></figure>
+<h2 id="5-fq">5. FQ</h2>
+<h3 id="安装electron-ssr-chrome-以及chrome插件switchomega">安装electron-ssr、chrome、以及chrome插件switchomega</h3>
+<pre><code class="language-bash">$ sudo pacman -S electron-ssr google-chrome-stable
+</code></pre>
+<p>以及下载switchomega，并在chrome的扩张程序中安装好</p>
+<h3 id="设置ssr">设置SSR</h3>
+<p>运行electron-ssr，复制下面的内容，右键单击任务栏中小飞机图标，选择<code>配置</code>-&gt;<code>从剪贴板批量导入配置</code>，</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2018/12/24/5c20e0626b5c0.png" alt="ssr_config"></figure>
+<p>将下面的内容粘贴进去即可</p>
+<blockquote>
+<p>ssr://MTY1LjIyNy4yNy4zMDo1ODg4ODphdXRoX3NoYTFfdjQ6YWVzLTI1Ni1jZmI6cGxhaW46YzNOeU1UZ3hNa</p>
+<p>kZwYmtSUC8_b2Jmc3BhcmFtPSZwcm90b3BhcmFtPSZyZW1hcmtzPVJFOHhPQzB4TFRJeCZncm91cD1VMEZP</p>
+</blockquote>
+<h3 id="设置chrome代理">设置chrome代理</h3>
+<p>配置switchyomega，新建一个proxy profile起名为ssr ，协议选择SOCKS5，地址设置成127.0.0.1，端口1080，点击右上角的switchyomega图标，选择ssr，即可</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85%E5%AE%8C%E7%B3%BB%E7%BB%9F%E5%90%8E%E9%A6%96%E5%85%88%E8%A6%81%E5%81%9A%E7%9A%84%E5%B7%A5%E4%BD%9C">1. 安装完系统后首先要做的工作</a>
+<ul>
+<li><a href="#%E5%A2%9E%E5%8A%A0%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90">增加国内镜像源</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0archlinuxcn%E6%BA%90">添加archlinuxcn源</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F">更新系统</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95">安装中文输入法</a></li>
+</ul>
+</li>
+<li><a href="#2-zsh">2. zsh</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85zsh">安装zsh</a></li>
+<li><a href="#zsh-config">zsh config</a></li>
+</ul>
+</li>
+<li><a href="#3-urxvt">3. urxvt</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85urxvt">安装urxvt</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96urxvt">配置美化urxvt</a></li>
+</ul>
+</li>
+<li><a href="#4-neofetch">4. neofetch</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85neofetch">安装neofetch</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8Cneofetch">运行neofetch</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEneofetch%E6%98%BE%E7%A4%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E7%89%87">配置neofetch显示自定义图片</a></li>
+</ul>
+</li>
+<li><a href="#5-fq">5. FQ</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85electron-ssr-chrome-%E4%BB%A5%E5%8F%8Achrome%E6%8F%92%E4%BB%B6switchomega">安装electron-ssr、chrome、以及chrome插件switchomega</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AEssr">设置SSR</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AEchrome%E4%BB%A3%E7%90%86">设置chrome代理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

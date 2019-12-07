@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>Leetcode 207. Course Schedule | Leon&#39;s Blog</title>
+<title>排序 | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,29 +86,22 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">Leetcode 207. Course Schedule</h2>
+          <h2 class="post-title">排序</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-12-06</span>
+            <span><i class="icon-calendar-outline"></i> 2018-11-02</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
-                  <a href="https://tobislee.github.io//tag/BkFqdoL7J">
-                    leetcode
+                  <a href="https://tobislee.github.io//tag/E2FQLUx33_">
+                    sort
                     
                       ，
                     
                   </a>
                 
-                  <a href="https://tobislee.github.io//tag/9KRZd5dtFf">
-                    medium
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://tobislee.github.io//tag/Es-PD1jY3G">
-                    graph
+                  <a href="https://tobislee.github.io//tag/BhOKAWPfJ">
+                    algorithm
                     
                   </a>
                 
@@ -116,56 +109,81 @@
             
           </div>
           <div class="post-content">
-            <h2 id="description">Description</h2>
-<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
-<!-- more -->
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: 2, [[1,0]] 
-Output: true
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0. So it is possible.
+            <h2 id="快排">快排</h2>
+<pre><code class="language-c++">void QSort(int *a, int low, int high){
+    int left = low, right = high;
+    int pivot = a[low];
+    while(left &lt; right){
+        while(left &lt; right &amp;&amp; a[right] &gt;= pivot) right--;
+        a[left] = a[right];
+        while(left &lt; right &amp;&amp; a[left] &lt;= pivot) left++;
+        a[right] = a[left];
+    }
+    a[left] = pivot;
+    QSort(a, low, left-1);
+    QSort(a, left+1, high);
+}
 </code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: 2, [[1,0],[0,1]]
-Output: false
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0, and to take course 0 you should
-             also have finished course 1. So it is impossible.
-</code></pre>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</li>
-<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
-</ol>
-<h2 id="idea">Idea</h2>
-<p>其实就是判断图中是否有环，使用拓扑排序，然后将入度为0的结点放入队列中，然后依次出队列，将结点数减一，并将当前结点指向的结点的入度减一，并判断其是否为零，如果为零则加入队列，如果不为零，继续循环。</p>
-<h2 id="solution">Solution</h2>
-<pre><code class="language-cpp">class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-        // adjacent table;
-        vector&lt;vector&lt;int&gt; &gt; adj(numCourses, vector&lt;int&gt;());
-        // degree of each node
-        vector&lt;int&gt; degree(numCourses, 0);
-        for (auto &amp;p : prerequisites) {
-            adj[p[1]].push_back(p[0]);
-            degree[p[0]]++;
-        }
-        // to save the elements which are degree = 0;
-        queue&lt;int&gt; q;
-        for (int i = 0; i &lt; numCourses; i++) if (degree[i] == 0) q.push(i);
-        while (!q.empty()) {
-            int node = q.front(); q.pop();
-            numCourses--;
-            for (auto next : adj[node]) {
-                if (--degree[next] == 0) q.push(next);
+<h2 id="冒泡排序">冒泡排序</h2>
+<pre><code class="language-c++">void BubbleSort(int *a, int len){
+    bool swap = false;
+    for(int i = 0; i &lt; len; i++){
+        for(int j = len - 1; j &gt; i; j--){
+            if(a[j-1] &gt; a[j]){
+                swap(a[j-1], a[j]);
+                swap = true;
             }
         }
-        return numCourses == 0;
+        if(!flag) return ;
     }
-};
+}
+</code></pre>
+<h2 id="直接插入排序">直接插入排序</h2>
+<pre><code class="language-c++">void InsertSort(int *a, int len){
+    int i, j;
+    for (i = 2; i &lt;= n; i++){
+        if(a[i] &lt; a[i-1]){
+            a[0] = a[i];
+            for(j = i-1; a[j] &gt; a[0]; j--) a[j+1] = a[j];
+            a[j+1] = a[0];
+        }
+    }
+}
+</code></pre>
+<h2 id="选择排序">选择排序</h2>
+<pre><code class="language-c++">void SelectSort(int *a, int len){
+    for(int i = 0; i &lt; len; i++){
+        int min = i;
+        for(int j = i+1; j &lt; n; j++){
+            if(a[min] &gt; a[j]){
+                min = j;
+            }
+        }
+        if(min != i) swap(a[i], a[min]);
+    }
+}
+</code></pre>
+<h2 id="归并排序">归并排序</h2>
+<pre><code class="language-c++">void Merge(int *a, int *b, int low, int mid, int high){
+    for(int i = low; i &lt;= high; i++){
+        a[i] = b[i];
+    }
+    for(int i = low, j = mid+1, k=i; i &lt;= mid &amp;&amp; j &lt;= high; k++){
+        if(b[i] &lt;= b[j]) a[k] = b[i++];
+        else a[k] = b[j++];
+    }
+    //下面两个while只有一个会执行
+    while(i &lt;= mid) a[k+1] = b[i++];
+    while(j &lt;= high) a[k+1] = b[j++];
+}
+void MergeSort(int *a, int low, int high){
+    int mid = (low + high) / 2;
+    if(low &lt; high){
+        MergeSort(a, low, mid);
+        MergeSort(a, mid+1, high);
+        Merge(a, b, low, mid, high);
+    }
+}
 </code></pre>
 
           </div>
@@ -173,9 +191,9 @@ public:
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
+            <a class="purple-link" href="https://tobislee.github.io//post/DSA-tree">
               <h3 class="post-title">
-                下一篇：吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习
+                下一篇：树操作
               </h3>
             </a>
           </div>

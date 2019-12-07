@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>Leetcode 207. Course Schedule | Leon&#39;s Blog</title>
+<title>数组操作 | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -86,29 +86,22 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">Leetcode 207. Course Schedule</h2>
+          <h2 class="post-title">数组操作</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-12-06</span>
+            <span><i class="icon-calendar-outline"></i> 2018-11-02</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
-                  <a href="https://tobislee.github.io//tag/BkFqdoL7J">
-                    leetcode
+                  <a href="https://tobislee.github.io//tag/suXFwY1blD">
+                    data structure
                     
                       ，
                     
                   </a>
                 
-                  <a href="https://tobislee.github.io//tag/9KRZd5dtFf">
-                    medium
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://tobislee.github.io//tag/Es-PD1jY3G">
-                    graph
+                  <a href="https://tobislee.github.io//tag/JbXVcow8DZ">
+                    array
                     
                   </a>
                 
@@ -116,56 +109,44 @@
             
           </div>
           <div class="post-content">
-            <h2 id="description">Description</h2>
-<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
-<!-- more -->
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: 2, [[1,0]] 
-Output: true
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0. So it is possible.
-</code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: 2, [[1,0],[0,1]]
-Output: false
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0, and to take course 0 you should
-             also have finished course 1. So it is impossible.
-</code></pre>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</li>
-<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
-</ol>
-<h2 id="idea">Idea</h2>
-<p>其实就是判断图中是否有环，使用拓扑排序，然后将入度为0的结点放入队列中，然后依次出队列，将结点数减一，并将当前结点指向的结点的入度减一，并判断其是否为零，如果为零则加入队列，如果不为零，继续循环。</p>
-<h2 id="solution">Solution</h2>
-<pre><code class="language-cpp">class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-        // adjacent table;
-        vector&lt;vector&lt;int&gt; &gt; adj(numCourses, vector&lt;int&gt;());
-        // degree of each node
-        vector&lt;int&gt; degree(numCourses, 0);
-        for (auto &amp;p : prerequisites) {
-            adj[p[1]].push_back(p[0]);
-            degree[p[0]]++;
+            <h2 id="删除数组中所有值为val的节点">删除数组中所有值为val的节点</h2>
+<pre><code class="language-c++">void deleteItem(int *a, int val){
+    int k = 0;
+    for (int i = 0; i &lt; a.length; i++){
+        if(a[i] != val){
+            a[k] = a[i];
+            k++;
         }
-        // to save the elements which are degree = 0;
-        queue&lt;int&gt; q;
-        for (int i = 0; i &lt; numCourses; i++) if (degree[i] == 0) q.push(i);
-        while (!q.empty()) {
-            int node = q.front(); q.pop();
-            numCourses--;
-            for (auto next : adj[node]) {
-                if (--degree[next] == 0) q.push(next);
-            }
-        }
-        return numCourses == 0;
     }
-};
+    a.length = k;
+}
+</code></pre>
+<h2 id="删除数组中的重复值">删除数组中的重复值</h2>
+<pre><code class="language-c++">void deleteDuplicate(int *a){
+    if(a.length == 0) reutrn ;
+    for(int i = 0; i &lt; a.length; i++){
+        if(a[i] != a[j]) a[++i] = a[j];
+    }
+    a.length = i;
+}
+</code></pre>
+<h2 id="数组左移">数组左移</h2>
+<ul>
+<li>思路： ab -&gt; a<sup>-1</sup>b -&gt; a<sup>-1</sup>b<sup>-1</sup> -&gt; (a<sup>-1</sup>b<sup>-1</sup>)<sup>-1</sup> = ba</li>
+</ul>
+<pre><code class="language-c++">void reverse(int *r, int from, int to){
+    int i, temp;
+    for (i = 0; i &lt; (to-from+1)/2; i++) {
+        temp = r[from + i];
+        r[from+i] = r[to-i];
+        r[to-i] = temp;
+    }   
+}
+void converse(int *r, int len, int pos){
+    reverse(r, 0, pos-1);
+    reverse(r, pos, len-1);
+    reverse(r, 0, len-1);
+}
 </code></pre>
 
           </div>
@@ -173,9 +154,9 @@ public:
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
+            <a class="purple-link" href="https://tobislee.github.io//post/manjaro-customize">
               <h3 class="post-title">
-                下一篇：吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习
+                下一篇：Manjaro系统美化与配置
               </h3>
             </a>
           </div>

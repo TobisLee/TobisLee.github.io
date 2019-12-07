@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>链表操作 | Leon&#39;s Blog</title>
+<meta name="description" content="脚踏实地，仰望星空">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575689034475">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://tobislee.github.io/">
+        <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575689034475" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://tobislee.github.io/">
+        <h1 class="site-title">Leon&#39;s Blog</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">链表操作</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2018-11-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://tobislee.github.io//tag/suXFwY1blD">
+                    data structure
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://tobislee.github.io//tag/5T3tsPPhKI">
+                    linked list
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="链表逆置">链表逆置</h2>
+<pre><code class="language-c++">node* reverse(node* head){
+    if(head == nullptr) return nullptr;
+    node* pre = head;
+    node* pse = head-&gt;next;
+    while(pse != null){
+        node* temp = pse-&gt;next;
+        pse-&gt;next = pre;
+        pre = pse;
+        pse = t;
+    }
+    head-&gt;next = null;
+    return pre;
+}
+</code></pre>
+<h2 id="获取链表中间节点">获取链表中间节点</h2>
+<pre><code class="language-c++">node* getMidNode(node* head){
+    if(head == nullptr) return nullptr;
+    node* fast = head;
+    node* slow = head;
+    while(fast-&gt;next != nullptr &amp;&amp; fast-&gt;next-&gt;next != nullptr){
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+    return slow;
+}
+</code></pre>
+<h2 id="获取链表倒数第k个值">获取链表倒数第K个值</h2>
+<pre><code class="language-c++">node* getKNode(node* head, int k){
+    if(k &lt;= 0 || head == nullptr) return nullptr;
+    node* p = head;
+    node* q = head;
+    while(k-- &gt; 0) p = p-&gt;next;
+    while(p-&gt;next != null){
+        p = p-&gt;next;
+        q = q-&gt;next;
+    }
+    return q;
+}
+</code></pre>
+<h2 id="删除链表中所有值为val的节点">删除链表中所有值为val的节点</h2>
+<pre><code class="language-c++">node* deleteNode(node* head, int val){
+    while(head != nullptr &amp;&amp; head-&gt;val == val){
+        head = head-&gt;next;
+    }
+    node* p = head;
+    for(node* pre = head; head != nullptr; head = head-&gt;next){
+        if(head-&gt;val == val) pre-&gt;next = p-&gt;next;
+        else pre = p;
+    }
+    return head;
+}
+</code></pre>
+<h2 id="删除有序链表中的重复值">删除有序链表中的重复值</h2>
+<pre><code class="language-c++">node* deleteDuplicate(node* head){
+    if(head == nullptr) return nullptr;
+    for(node* pre = head, *p = head-&gt;next; p != nullptr; p = p-&gt;next){
+        if(pre-&gt;val == val) pre-&gt;next = p-&gt;next;
+        else pre = p;
+    }
+    return head;
+}
+</code></pre>
+<h2 id="判断链表回文">判断链表回文</h2>
+<ol>
+<li>找到中间节点</li>
+<li>将后面的链表逆序</li>
+<li>将前面的链表依次与后面的链表比较</li>
+</ol>
+<h2 id="获取两链表相交的位置">获取两链表相交的位置</h2>
+<pre><code class="language-c++">node* getPos(node* a, node* b){
+    node* p1 = nullptr;	//获取a链表最后元素
+    node* p2 = nullptr;	//获取b链表最后元素
+    int len1 = getLen(a, &amp;p1);
+    int len2 = getLen(b, &amp;p2);
+    if(p1 != p2) reutrn nullptr;
+    p1 = a, p2 = b;
+    if(len1 &gt; len2){
+        for(int i = 0; i &lt; len1-len2; i++){
+            p1 = p1-&gt;next;
+        }
+    }
+    else{
+        for(int i = 0; i &lt; len2-len1; i++){
+            p2 = p2-&gt;next;
+        }
+    }
+    while(p1 != p2){
+        p1 = p1-&gt;next;
+        p2 = p2-&gt;next;
+    }
+    return p1;
+}
+</code></pre>
+<h2 id="判断链表是否有环有则返回入口点">判断链表是否有环，有则返回入口点</h2>
+<pre><code class="language-c++">node* detectCycle(node* head){
+    node* slow = head;
+    node* fast = head;
+    while(fast != nullptr &amp;&amp; fast-&gt;next != nullptr){
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if(slow == fast) break;
+    }
+    if(fast == nullptr || fast-&gt;next == nullptr) return nullptr;
+    slow = head;
+    while(slow != fast){
+        slow = slow-&gt;next;
+        fast = fast-&gt;next;
+    }
+    return slow;
+}
+</code></pre>
+<h2 id="将两个有序链表合并成一个链表">将两个有序链表合并成一个链表</h2>
+<pre><code class="language-c++">node* mergelist(node* a, node* b){
+    if(a == null &amp;&amp; b == null) return null;
+    node* p1 = a;
+    node* p2 = b;
+    node* head = new node(-1);
+    node* p = head;
+    while(p1 != null &amp;&amp; p2 != null){
+        if(p1-&gt;val &lt;= p2-&gt;val){
+            p-&gt;next = p1;
+            p = p1;
+            p1 = p1-&gt;next;
+        }
+        else{
+            p-&gt;next = p2;
+            p = p2;
+            p2 = p2-&gt;next;
+        }
+    }
+    while(p1 != nullptr){
+        p-&gt;next = p1;
+        p = p1;
+        p1 = p1-&gt;next;
+    }
+    while(p2 != nullptr){
+        p-&gt;next = p2;
+        p = p2;
+        p2 = p2-&gt;next;
+    }
+    return head-&gt;next;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://tobislee.github.io//post/DSA-array">
+              <h3 class="post-title">
+                下一篇：数组操作
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">脚踏实地，仰望星空</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '326cef9623c38e17d5ec',
+        clientSecret: 'b8e9390796e111c855fbf33909869e0cbc2ba902',
+        repo: 'TobisLee.github.io',
+        owner: 'TobisLee',
+        admin: ['TobisLee'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

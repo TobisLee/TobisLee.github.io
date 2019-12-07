@@ -1,115 +1,109 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 | Leon&#39;s Blog</title>
-<meta name="description" content="脚踏实地，仰望星空">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<meta name="description" content="脚踏实地，仰望星空" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575692477422">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575689034475">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
 
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://tobislee.github.io/">
-        <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575689034475" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://tobislee.github.io/">
-        <h1 class="site-title">Leon&#39;s Blog</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tobislee.github.io/">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575692477422" alt="">
+  </a>
+  <h1 class="site-title">
+    Leon&#39;s Blog
+  </h1>
+  <p class="site-description">
+    脚踏实地，仰望星空
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/TobisLee" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/tlss55159552" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
         <div class="post-detail">
-          
-          <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（4）- 神经网络</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-07</span>
-            
+          <article class="post">
+            <h2 class="post-title">
+              吴恩达《Coursera机器学习》课程笔记（4）- 神经网络
+            </h2>
+            <div class="post-info">
               <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                    coursera
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                    machine learning
-                    
-                  </a>
-                
+                2019-01-07
               </span>
+              <span>
+                18 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+                  # coursera
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+                  # machine learning
+                </a>
+              
+            </div>
             
-          </div>
-          <div class="post-content">
-            <h1 id="neural-networks">Neural Networks</h1>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="neural-networks">Neural Networks</h1>
 <h2 id="non-linear-hypotheses">Non-linear hypotheses</h2>
 <p>如果用逻辑回归的方法来做非线性分类，那么所需的特征量一旦很多的话，计算量会非常大。</p>
 <figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/01/07/5c330c57ccb94.png" alt="lecture8_non-linear_classification.png"></figure>
@@ -338,86 +332,130 @@ are the number of units in the layers adjacent to <span class="katex"><span clas
 <figure data-type="image" tabindex="13"><img src="https://i.loli.net/2019/01/07/5c3353a5012d5.png" alt="lecture9_put_it_together3.png"></figure>
 <p><strong>神经网络的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>(</mo><mi mathvariant="normal">Θ</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">J(\Theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord">Θ</span><span class="mclose">)</span></span></span></span> 是非凸的，只能找到局部最优解</strong></p>
 
-          </div>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#neural-networks">Neural Networks</a>
+<ul>
+<li><a href="#non-linear-hypotheses">Non-linear hypotheses</a></li>
+<li><a href="#model-representation">Model representation</a></li>
+<li><a href="#forward-propagation-vectorized-implementation">Forward propagation: Vectorized implementation</a></li>
+<li><a href="#examples">examples</a></li>
+<li><a href="#multi-class-classification">Multi-class classification</a></li>
+<li><a href="#cost-function">Cost function</a></li>
+<li><a href="#backpropagation-algorithm">Backpropagation algorithm</a>
+<ul>
+<li><a href="#gradient-computation-backpropagation-algorithm">Gradient computation: Backpropagation algorithm</a>
+<ul>
+<li><a href="#bp-algorithm">BP algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#unrolling-parameters">Unrolling parameters</a><br>
+*
+<ul>
+<li><a href="#learing-algorithm">Learing Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#gradient-checking">Gradient checking</a></li>
+<li><a href="#random-initialzation">Random initialzation</a></li>
+<li><a href="#put-it-together">put it together</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://tobislee.github.io//post/Coursera-Machine-Learning-03">
+            <div class="next">下一篇</div>
+            <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-03">
               <h3 class="post-title">
-                下一篇：吴恩达《Coursera机器学习》课程笔记（3）- 逻辑回归
+                吴恩达《Coursera机器学习》课程笔记（3）- 逻辑回归
               </h3>
             </a>
           </div>
+        
+
+        
           
-      </div>
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
+<div id="gitalk-container"></div>
 
-        
-      
+<script>
 
-      <div class="site-footer">
-  <div class="slogan">脚踏实地，仰望星空</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
-</div>
+  var gitalk = new Gitalk({
+    clientID: '326cef9623c38e17d5ec',
+    clientSecret: 'b8e9390796e111c855fbf33909869e0cbc2ba902',
+    repo: 'TobisLee.github.io',
+    owner: 'TobisLee',
+    admin: ['TobisLee'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  gitalk.render('gitalk-container')
 
 </script>
 
+          
 
+          
+        
 
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-      var gitalk = new Gitalk({
-        clientID: '326cef9623c38e17d5ec',
-        clientSecret: 'b8e9390796e111c855fbf33909869e0cbc2ba902',
-        repo: 'TobisLee.github.io',
-        owner: 'TobisLee',
-        admin: ['TobisLee'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
+<script>
+  hljs.initHighlightingOnLoad()
 
-      gitalk.render('gitalk-container')
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-    </script>
-  
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
 
-  
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
 
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
 
+</script>
 
-
+      </div>
+    </div>
   </body>
 </html>

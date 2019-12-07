@@ -1,89 +1,112 @@
-
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leon&#39;s Blog</title>
-<meta name="description" content="脚踏实地，仰望星空">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<meta name="description" content="脚踏实地，仰望星空" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575692477422">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575689034475">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://tobislee.github.io/">
-        <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575689034475" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://tobislee.github.io/">
-        <h1 class="site-title">Leon&#39;s Blog</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tobislee.github.io/">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575692477422" alt="">
+  </a>
+  <h1 class="site-title">
+    Leon&#39;s Blog
+  </h1>
+  <p class="site-description">
+    脚踏实地，仰望星空
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/TobisLee" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/tlss55159552" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        
-        
-<section class="post-item">
-    <div class="content">
+    
+        <div class="post-container">
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/leetcode-207-course-schedule">
         <h2 class="post-title">Leetcode 207. Course Schedule</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-12-06
+        </span>
+        <span>
+          3 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
+            # leetcode
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
+            # medium
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/Es-PD1jY3G" class="post-tag">
+            # graph
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         <h2 id="description">Description</h2>
 <p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
@@ -91,382 +114,310 @@
 <p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
 
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-12-06</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/BkFqdoL7J">
-                leetcode
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/9KRZd5dtFf">
-                medium
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/Es-PD1jY3G">
-                graph
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
         <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-01-08
+        </span>
+        <span>
+          3 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+            # coursera
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+            # machine learning
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/h8LMdlPaR" class="post-tag">
+            # exercise
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         <p>吴恩达机器学习第四周 神经网络实验 主要代码</p>
 
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-08</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                coursera
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                machine learning
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/h8LMdlPaR">
-                exercise
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-04">
         <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（4）- 神经网络</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-01-07
+        </span>
+        <span>
+          18 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+            # coursera
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+            # machine learning
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-07</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                coursera
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                machine learning
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-03">
         <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（3）- 逻辑回归</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-01-05
+        </span>
+        <span>
+          20 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+            # coursera
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+            # machine learning
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-05</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                coursera
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                machine learning
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-02">
         <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（2）- 多变量线性回归</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-01-04
+        </span>
+        <span>
+          4 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+            # coursera
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+            # machine learning
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-04</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                coursera
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                machine learning
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/git">
         <h2 class="post-title">Git使用中的问题及解决办法</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2019-01-04
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/vDfV-x0DMM" class="post-tag">
+            # git
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2019-01-04</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/vDfV-x0DMM">
-                git
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-01">
         <h2 class="post-title">吴恩达《Coursera机器学习》课程笔记（1）- 基础概念</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2018-12-26
+        </span>
+        <span>
+          5 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/RPhSI7eps" class="post-tag">
+            # coursera
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/NLsAUSIu4" class="post-tag">
+            # machine learning
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-12-26</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/RPhSI7eps">
-                coursera
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/NLsAUSIu4">
-                machine learning
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/DSA-graph">
         <h2 class="post-title">图操作</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2018-11-02
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/suXFwY1blD" class="post-tag">
+            # data structure
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/Es-PD1jY3G" class="post-tag">
+            # graph
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-11-02</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/suXFwY1blD">
-                data structure
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/Es-PD1jY3G">
-                graph
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/DSA-sort">
         <h2 class="post-title">排序</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2018-11-02
+        </span>
+        <span>
+          3 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/E2FQLUx33_" class="post-tag">
+            # sort
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/BhOKAWPfJ" class="post-tag">
+            # algorithm
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-11-02</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/E2FQLUx33_">
-                sort
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/BhOKAWPfJ">
-                algorithm
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-<section class="post-item">
-    <div class="content">
+    </article>
+  
+    <article class="post">
       <a href="https://tobislee.github.io//post/DSA-tree">
         <h2 class="post-title">树操作</h2>
       </a>
+      <div class="post-info">
+        <span>
+          2018-11-02
+        </span>
+        <span>
+          4 min read
+        </span>
+        
+          <a href="https://tobislee.github.io//tag/suXFwY1blD" class="post-tag">
+            # data structure
+          </a>
+        
+          <a href="https://tobislee.github.io//tag/oFralIUQkM" class="post-tag">
+            # tree
+          </a>
+        
+      </div>
+      
       <div class="post-abstract">
         
       </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2018-11-02</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
-            
-              <a href="https://tobislee.github.io//tag/suXFwY1blD">
-                data structure
-                
-                  ，
-                
-              </a>
-            
-              <a href="https://tobislee.github.io//tag/oFralIUQkM">
-                tree
-                
-              </a>
-            
-          </span>
-        
-      </div>
-    </div>
-    
-  </section>
-
-
-<div class="pagination-container">
-  
-  
-    <a href="https://tobislee.github.io//page/2/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+    </article>
   
 </div>
 
-
-      </div>
-
-      <div class="site-footer">
-  <div class="slogan">脚踏实地，仰望星空</div>
-  <div class="social-container">
     
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+        <div class="pagination-container">
+  
+  
+    <a href="https://tobislee.github.io//page/2/" class="next-page">下一页</a>
+  
 </div>
 
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-    </div>
-    <script type="application/javascript">
+<script>
+  hljs.initHighlightingOnLoad()
 
-hljs.initHighlightingOnLoad()
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
 
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

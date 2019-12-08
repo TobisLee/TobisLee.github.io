@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leetcode 215. Kth Largest Element in an Array | Leon&#39;s Blog</title>
+<meta name="description" content="脚踏实地，仰望星空" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575806673593">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tobislee.github.io/">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575806673593" alt="">
+  </a>
+  <h1 class="site-title">
+    Leon&#39;s Blog
+  </h1>
+  <p class="site-description">
+    脚踏实地，仰望星空
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/TobisLee" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/tlss55159552" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Leetcode 215. Kth Largest Element in an Array
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-08
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/JbXVcow8DZ" class="post-tag">
+                  # array
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
+                  # medium
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="description">Description</h2>
+<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
+<!-- more -->
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+</code></pre>
+<p><strong>Note:</strong><br>
+You may assume k is always valid, 1 ≤ k ≤ array's length.</p>
+<h2 id="idea">Idea</h2>
+<ol>
+<li>
+<p>将数组从小到大排序，然后返回第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">N-k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大的元素。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N\log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>将数组从大到小排序，然后返回第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>大的元素。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N\log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用c++内置函数<code>nth_element</code> ，函数用法：<code>nth_element(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组中<code>[l, r)</code>内的第<code>k</code>小的元素处在第<code>k</code>个位置上（相对位置），但是这个函数不保证其他元素有序<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>是区间长度。</p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用c++内置函数<code>partial_sort</code>，函数用法：</p>
+<p><code>partial_sort(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组<code>[l, r)</code> 区间的元素重新排序。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>∗</mo><mi>log</mi><mo>⁡</mo><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N*\log M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>是区间距离，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo separator="true">,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">l, k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>之间的距离。</p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用<code>priority_queue</code> 模拟小根堆。</p>
+</li>
+<li>
+<p>使用<code>priority_queue</code> 模拟大根堆。</p>
+</li>
+<li>
+<p>用栈+排序。</p>
+</li>
+</ol>
+<h2 id="solution-1">Solution 1</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size();
+        std::sort(nums.begin(), nums.end();
+        return nums[n-k];
+    }
+};
+</code></pre>
+<h2 id="solution-2">Solution 2</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        std::sort(nums.begin(), nums.end(), greater&lt;int&gt;());
+        return nums[k-1];
+    }
+};
+</code></pre>
+<h2 id="solution-3">Solution 3</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        nth_element(nums.begin(), nums.begin()+k-1, nums.end(), greater&lt;int&gt;());
+        return nums[k-1];
+    }
+};
+</code></pre>
+<h2 id="solution-4">Solution 4</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        partial_sort(nums.begin(), nums.begin() + k, nums.end(), greater&lt;int&gt;());
+        return nums[k - 1];
+    }
+};
+</code></pre>
+<h2 id="solution-5">Solution 5</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+        for (auto num : nums) {
+            pq.push(num);
+            if (pq.size() &gt; k) {
+                pq.pop();
+            }
+        }
+        return pq.top();
+    }
+};
+</code></pre>
+<h2 id="solution-6">Solution 6</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        priority_queue&lt;int&gt; pq(nums.begin(), nums.end());
+        for (int i = 0; i &lt; k-1; i++) {
+            pq.pop();
+        }
+        return pq.top();
+    }
+};
+</code></pre>
+<h2 id="solution-7">Solution 7</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        stack&lt;int&gt; st;
+        sort(nums.begin(), nums.end(), greater&lt;int&gt;());
+        for(int i=0; i&lt;k; i++)
+        {
+            st.push(nums[i]);
+        }
+        return st.top();
+    }
+};
+</code></pre>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>参考文章：https://www.cnblogs.com/zwfymqz/p/8503692.html <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#solution-1">Solution 1</a></li>
+<li><a href="#solution-2">Solution 2</a></li>
+<li><a href="#solution-3">Solution 3</a></li>
+<li><a href="#solution-4">Solution 4</a></li>
+<li><a href="#solution-5">Solution 5</a></li>
+<li><a href="#solution-6">Solution 6</a></li>
+<li><a href="#solution-7">Solution 7</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://tobislee.github.io//post/leetcode-207-course-schedule">
+              <h3 class="post-title">
+                Leetcode 207. Course Schedule
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

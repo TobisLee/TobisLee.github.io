@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tobislee.github.io/</id>
     <title>Leon&apos;s Blog</title>
-    <updated>2019-12-07T04:25:59.679Z</updated>
+    <updated>2019-12-08T12:04:54.964Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tobislee.github.io/"/>
     <link rel="self" href="https://tobislee.github.io//atom.xml"/>
@@ -10,6 +10,148 @@
     <logo>https://tobislee.github.io//images/avatar.png</logo>
     <icon>https://tobislee.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Leon&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Leetcode 215. Kth Largest Element in an Array]]></title>
+        <id>https://tobislee.github.io//post/leetcode-215-kth-largest-element-in-an-array</id>
+        <link href="https://tobislee.github.io//post/leetcode-215-kth-largest-element-in-an-array">
+        </link>
+        <updated>2019-12-08T12:00:57.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="description">Description</h2>
+<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="description">Description</h2>
+<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
+<!-- more -->
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+</code></pre>
+<p><strong>Note:</strong><br>
+You may assume k is always valid, 1 ≤ k ≤ array's length.</p>
+<h2 id="idea">Idea</h2>
+<ol>
+<li>
+<p>将数组从小到大排序，然后返回第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">N-k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 大的元素。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N\log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>将数组从大到小排序，然后返回第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>大的元素。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>log</mi><mo>⁡</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N\log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用c++内置函数<code>nth_element</code> ，函数用法：<code>nth_element(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组中<code>[l, r)</code>内的第<code>k</code>小的元素处在第<code>k</code>个位置上（相对位置），但是这个函数不保证其他元素有序<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>是区间长度。</p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用c++内置函数<code>partial_sort</code>，函数用法：</p>
+<p><code>partial_sort(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组<code>[l, r)</code> 区间的元素重新排序。</p>
+<p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>∗</mo><mi>log</mi><mo>⁡</mo><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N*\log M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>是区间距离，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo separator="true">,</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">l, k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>之间的距离。</p>
+<p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p>使用<code>priority_queue</code> 模拟小根堆。</p>
+</li>
+<li>
+<p>使用<code>priority_queue</code> 模拟大根堆。</p>
+</li>
+<li>
+<p>用栈+排序。</p>
+</li>
+</ol>
+<h2 id="solution-1">Solution 1</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size();
+        std::sort(nums.begin(), nums.end();
+        return nums[n-k];
+    }
+};
+</code></pre>
+<h2 id="solution-2">Solution 2</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        std::sort(nums.begin(), nums.end(), greater&lt;int&gt;());
+        return nums[k-1];
+    }
+};
+</code></pre>
+<h2 id="solution-3">Solution 3</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        nth_element(nums.begin(), nums.begin()+k-1, nums.end(), greater&lt;int&gt;());
+        return nums[k-1];
+    }
+};
+</code></pre>
+<h2 id="solution-4">Solution 4</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        partial_sort(nums.begin(), nums.begin() + k, nums.end(), greater&lt;int&gt;());
+        return nums[k - 1];
+    }
+};
+</code></pre>
+<h2 id="solution-5">Solution 5</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+        for (auto num : nums) {
+            pq.push(num);
+            if (pq.size() &gt; k) {
+                pq.pop();
+            }
+        }
+        return pq.top();
+    }
+};
+</code></pre>
+<h2 id="solution-6">Solution 6</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        priority_queue&lt;int&gt; pq(nums.begin(), nums.end());
+        for (int i = 0; i &lt; k-1; i++) {
+            pq.pop();
+        }
+        return pq.top();
+    }
+};
+</code></pre>
+<h2 id="solution-7">Solution 7</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        stack&lt;int&gt; st;
+        sort(nums.begin(), nums.end(), greater&lt;int&gt;());
+        for(int i=0; i&lt;k; i++)
+        {
+            st.push(nums[i]);
+        }
+        return st.top();
+    }
+};
+</code></pre>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>参考文章：https://www.cnblogs.com/zwfymqz/p/8503692.html <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Leetcode 207. Course Schedule]]></title>
         <id>https://tobislee.github.io//post/leetcode-207-course-schedule</id>
@@ -1035,189 +1177,6 @@ void MergeSort(int *a, int low, int high){
         MergeSort(a, mid+1, high);
         Merge(a, b, low, mid, high);
     }
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[树操作]]></title>
-        <id>https://tobislee.github.io//post/DSA-tree</id>
-        <link href="https://tobislee.github.io//post/DSA-tree">
-        </link>
-        <updated>2018-11-02T04:14:19.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="先根遍历">先根遍历</h2>
-<p>递归实现：</p>
-<pre><code class="language-c++">void preOrder(TreeNode *t){
-    if(t != nullptr){
-        visit(t);
-        preOrder(t-&gt;left);
-        preOrder(t-&gt;right);
-    }
-}
-</code></pre>
-<p>非递归实现：</p>
-<pre><code class="language-c++">void preOrder(treenode *t){
-    treenode *p = t;
-    initStack(s);
-    if(t != nullptr) push(t, s);
-    while(!isEmpty(s)){
-        pop(s, p);
-        visit(p);
-        //一定要先右后左
-        if(p-&gt;rchild != nullptr) push(p-&gt;rchild, s);
-        if(p-&gt;lchild != nullptr) push(p-&gt;lchild, s);
-    }
-}
-</code></pre>
-<h2 id="中根遍历">中根遍历</h2>
-<p>递归实现：</p>
-<pre><code class="language-c++">void midOrder(TreeNode *t){
-    if(t != nullptr){
-        midOrder(t-&gt;left);
-        visit(t);
-        midOrder(t-&gt;right);
-    }
-}
-</code></pre>
-<p>非递归实现：</p>
-<pre><code class="language-c++">void midOrder(treenode *t){
-    initStack(s);
-    treenode *p = t;
-    while(p || !isEmpty(s)){
-        if(p){
-            push(p, s);
-            p = p-&gt;lchild;//一直向左
-        }
-        else{
-            pop(p, s);
-            visit(p);
-            p = p-&gt;rchild;
-        }
-    }
-}
-</code></pre>
-<h2 id="后根遍历">后根遍历</h2>
-<p>递归实现：</p>
-<pre><code class="language-c++">void postOrder(TreeNode *t){
-    if(t != nullptr){
-        postOrder(t-&gt;left);
-        postOrder(t-&gt;right);
-        visit(t);
-    }
-}
-</code></pre>
-<p>非递归实现：</p>
-<pre><code class="language-c++">void postOrder(treenode *t){
-	initStack(s);
-    treenode *p = t, *r = nullptr;
-    while(p || !isEmpty(s)){
-        if(p){
-            push(p, s);
-            p = p-&gt;lchild;//一直向左
-        }
-        else{
-            pop(p, s);
-            if(p-&gt;rchild &amp;&amp; p-&gt;rchild != r){
-                p = p-&gt;rchlid;
-                push(p, s);
-                p = p-&gt;lchild;
-            }
-            else{
-                pop(p, s);
-                visit(p);
-                r = p;
-                p = nullptr;
-            }
-        }
-    }
-}
-
-</code></pre>
-<h2 id="层次遍历">层次遍历</h2>
-<pre><code class="language-c++">void levelOrder(TreeNode *t){
-    InitQueue(q);
-    TreeNode *p;
-    inQueue(q, t);
-    while(!isEmpty(q)){
-        deQueue(q, p);
-        visit(p);
-        if(p-&gt;left != nullptr) inQueue(q, p-&gt;left);
-        if(p-&gt;right != nullptr) inQueue(q, p-&gt;right);
-    }
-}
-</code></pre>
-<h2 id="树的高度">树的高度</h2>
-<pre><code class="language-c++">void depth(treenode *t){
-    if(!t) return 0;
-    int front = -1, rear = -1;
-    int last = 0, level = 0;
-    treenode q[MAXSIZE];
-    q[++rear] = t;
-    treenode *p;
-    while(front &lt; rear){
-        p = Q[++front];
-        if(p-&gt;lchild != nullptr) q[++rear] = p-&gt;lchild;
-        if(p-&gt;rchild != nullptr) q[++rear] = p-&gt;rchild;
-        if(front == last){
-            level++;
-            last = rear;
-        }
-    }
-    return level;
-}
-</code></pre>
-<h2 id="树的宽度">树的宽度</h2>
-<pre><code class="language-c++">typedef struct{
-    treenode* data[MAXSIZE];
-    int level[MAXSIZE];
-    int front, rear;
-}q;
-int width(treenode *t){
-    treenode *p;
-    q.front = -1;
-    q.rear = 0;
-    q.data[rear] = t;
-    q.level[rear] = 1;
-    while(q.front &lt; q.rear){
-        q.front++;
-        p = q.data[q.front];
-        k = q.level[q.front];
-        if(p-&gt;lchild != nullptr){
-            q.rear++;
-            q.data[q.rear] = p-&gt;lchild;
-            q.level[q.rear] = k++;
-        }
-        if(p-&gt;rchild != nullptr){
-            q.rear++;
-            q.data[q.rear] = p-&gt;rchild;
-            q.level[q.rear] = k++;
-        }
-    }
-    int max = 0, i = 0, k = 1;
-    while(i &lt;= q.rear){
-        int n = 0;
-        if(i &lt; q.rear &amp;&amp; q.level == k) {
-            n++;
-            i++;
-        }
-        k = q.level[i];
-        if(n &gt; max) max = n;
-    }
-    return max;
-}
-</code></pre>
-<h2 id="由先序序列和中序序列建立二叉树">由先序序列和中序序列建立二叉树</h2>
-<pre><code class="language-c++">treenode* create(int *a, int* b, int l1, int h1, int l2, int h2){
-    treenode *root = (treenode*)malloc(sizeof(treenode*));
-    root-&gt;data = a[l1];
-    for(int i= l2; b[i] != root-&gt;data; i++);
-    llen = i - l2;
-    rlen = h2 - i;
-    if(llen) root-lchild = create(a, b, l1+1, l1+llen, l2, l2+llen-1);
-    else root-&gt;lchild = nullptr;
-    if(rlen) root-rchild = create(a, b, h1-rlen+1, h1, h2-rlen+1, h2);
-    else root-&gt;rchild = nullptr;
-    return root;
 }
 </code></pre>
 ]]></content>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tobislee.github.io/</id>
     <title>Leon&apos;s Blog</title>
-    <updated>2019-12-08T12:13:26.049Z</updated>
+    <updated>2019-12-09T13:21:06.656Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tobislee.github.io/"/>
     <link rel="self" href="https://tobislee.github.io//atom.xml"/>
@@ -11,16 +11,146 @@
     <icon>https://tobislee.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Leon&apos;s Blog</rights>
     <entry>
+        <title type="html"><![CDATA[Leetcode 221. Maximal Square]]></title>
+        <id>https://tobislee.github.io//post/221-maximal-square</id>
+        <link href="https://tobislee.github.io//post/221-maximal-square">
+        </link>
+        <updated>2019-12-09T06:45:06.000Z</updated>
+        <summary type="html"><![CDATA[<p>Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.</p>
+<!-- more -->
+<p><strong>Example:</strong></p>
+<pre><code>Input: 
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+Output: 4
+</code></pre>
+<h2 id="idea-1">Idea 1</h2>
+<p>使用DP，我们定义<code>dp[i][j]</code>为从点<code>[i][j]</code>开始，向左上角延伸，能构成的正方形的最大边长。<br>
+对于最上边的行<code>i=0</code>和最左边的列<code>j=0</code>来说，<code>dp[i][j] = matrix[i][j] - '0'</code>，因为当元素为1时，就构成了一个边长为1的正方形；当元素为0时，则不构成正方形，所以边长为0。<br>
+当<code>i,j &gt; 0</code>时:<br>
+如果<code>matrix[i][j] = 0:</code>说明这个格子不能构成正方形，所以<code>dp[i][j] = 0</code>；<br>
+如果<code>matrix[i][j] = 1:</code>说明这个格子可以构成正方形，我们要看他的左边、上边、左上角的元素的值，（这也是DP的精髓），他们保存着目前能够构成的正方形的最大边长，我们取他们之中最小的，然后+1，继续遍历，直到遍历完整个数组。<br>
+最后，我们取出dp数组中最大的元素，返回该值的平方。<br>
+时间复杂度：<code>O(mn)</code><br>
+空间复杂度：<code>O(mn)</code></p>
+<h2 id="solution-1">Solution 1</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {
+        if (matrix.empty()) return 0;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int side_length = 0;
+        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));
+        for (int i = 0; i &lt; m; i++) {
+            for (int j = 0; j &lt; n; j++) {
+                if (!i || !j || matrix[i][j] == '0')
+                    dp[i][j] = matrix[i][j] - '0';
+                else {
+                    dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1;
+                }
+                side_length = max(dp[i][j], side_length);
+            }
+        }
+        return side_length * side_length;
+    }
+};
+</code></pre>
+<h2 id="idea-2">Idea 2</h2>
+<p>上面的解决方案需要维护一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的矩阵，但我们实际用到的其实就是两行矩阵，所以我们可以只维护这两行矩阵。<br>
+时间复杂度：<code>O(mn)</code><br>
+空间复杂度：<code>O(n)</code></p>
+<h2 id="solution-2">Solution 2</h2>
+<pre><code class="language-cpp">// boost
+static const int __ = []() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+    return 0;
+}();
+class Solution {
+public:
+    int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {
+        if (matrix.size() == 0) return 0;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int side_length = 0;
+        vector&lt;int&gt; pre(n, 0);
+        vector&lt;int&gt; cur(n, 0);
+        for (int i = 0; i &lt; m; i++) {
+            for (int j = 0; j &lt; n; j++) {
+                if (matrix[i][j] == '0' || !i || !j) {
+                    cur[j] = matrix[i][j] - '0';
+                }
+                else {
+                    cur[j] = min(pre[j-1], min(pre[j], cur[j-1])) + 1;
+                }
+                side_length = max(cur[j], side_length);
+            }
+            // fill(pre.begin(), pre.end(), 0);
+            // swap(pre, cur);
+            swap(pre, cur);
+            fill(cur.begin(), cur.end(), 0);
+        }
+        return side_length*side_length;
+    }
+};
+</code></pre>
+<h2 id="idea-3">Idea 3</h2>
+<p>其实，我们只是希望获得<code>dp[i-1][j-1], dp[i-1][j], dp[i][j-1]</code>的值，所以我们可以考虑用一个数组，加上一个变量来做。<br>
+其中，<code>top_left</code>代表<code>dp[i][j]</code>左上角的元素，即<code>dp[i-1][j-1]</code>；<br>
+<code>vector&lt;int&gt; cur(n)</code>要分成两部分来看，从<code>[0, j-1]</code>代表本行新更新的dp值，<code>[j, n-1]</code>代表上一行的dp值，等待着更新。<br>
+时间复杂度：<code>O(mn)</code><br>
+空间复杂度：<code>O(n)</code></p>
+<pre><code class="language-cpp">static const int __ = []() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+    return 0;
+}();
+class Solution {
+public:
+    int maximalSquare(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {
+        if (matrix.size() == 0) return 0;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int side_length = 0;
+        int pre = 0;
+        vector&lt;int&gt; cur(n, 0);
+        for (int i = 0; i &lt; m; i++) {
+            for (int j = 0; j &lt; n; j++) {
+                int temp = cur[j];
+                if (matrix[i][j] == '0' || !i || !j) {
+                    cur[j] = matrix[i][j] - '0';
+                }
+                else {
+                    cur[j] = min(pre, min(cur[j-1], cur[j])) + 1;
+                }
+                side_length = max(cur[j], side_length);
+                pre = temp;
+            }
+        }
+        return side_length*side_length;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Leetcode 215. Kth Largest Element in an Array]]></title>
         <id>https://tobislee.github.io//post/leetcode-215-kth-largest-element-in-an-array</id>
         <link href="https://tobislee.github.io//post/leetcode-215-kth-largest-element-in-an-array">
         </link>
         <updated>2019-12-08T12:00:57.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="description">Description</h2>
-<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
+        <summary type="html"><![CDATA[<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h2 id="description">Description</h2>
-<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
+        <content type="html"><![CDATA[<p>Find the <strong>k</strong>th largest element in an unsorted array. Note that it is the kth largest  element in the sorted order, not the kth distinct element.</p>
 <!-- more -->
 <p><strong>Example 1:</strong></p>
 <pre><code>Input: [3,2,1,5,6,4] and k = 2
@@ -158,13 +288,11 @@ public:
         <link href="https://tobislee.github.io//post/leetcode-207-course-schedule">
         </link>
         <updated>2019-12-06T14:27:01.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="description">Description</h2>
-<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
+        <summary type="html"><![CDATA[<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
 <p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
 <p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h2 id="description">Description</h2>
-<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
+        <content type="html"><![CDATA[<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
 <p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
 <p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
 <!-- more -->
@@ -1096,90 +1224,6 @@ void DFS(Graph g, int v){
 }
 </code></pre>
 <hr>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[排序]]></title>
-        <id>https://tobislee.github.io//post/DSA-sort</id>
-        <link href="https://tobislee.github.io//post/DSA-sort">
-        </link>
-        <updated>2018-11-02T04:27:19.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="快排">快排</h2>
-<pre><code class="language-c++">void QSort(int *a, int low, int high){
-    int left = low, right = high;
-    int pivot = a[low];
-    while(left &lt; right){
-        while(left &lt; right &amp;&amp; a[right] &gt;= pivot) right--;
-        a[left] = a[right];
-        while(left &lt; right &amp;&amp; a[left] &lt;= pivot) left++;
-        a[right] = a[left];
-    }
-    a[left] = pivot;
-    QSort(a, low, left-1);
-    QSort(a, left+1, high);
-}
-</code></pre>
-<h2 id="冒泡排序">冒泡排序</h2>
-<pre><code class="language-c++">void BubbleSort(int *a, int len){
-    bool swap = false;
-    for(int i = 0; i &lt; len; i++){
-        for(int j = len - 1; j &gt; i; j--){
-            if(a[j-1] &gt; a[j]){
-                swap(a[j-1], a[j]);
-                swap = true;
-            }
-        }
-        if(!flag) return ;
-    }
-}
-</code></pre>
-<h2 id="直接插入排序">直接插入排序</h2>
-<pre><code class="language-c++">void InsertSort(int *a, int len){
-    int i, j;
-    for (i = 2; i &lt;= n; i++){
-        if(a[i] &lt; a[i-1]){
-            a[0] = a[i];
-            for(j = i-1; a[j] &gt; a[0]; j--) a[j+1] = a[j];
-            a[j+1] = a[0];
-        }
-    }
-}
-</code></pre>
-<h2 id="选择排序">选择排序</h2>
-<pre><code class="language-c++">void SelectSort(int *a, int len){
-    for(int i = 0; i &lt; len; i++){
-        int min = i;
-        for(int j = i+1; j &lt; n; j++){
-            if(a[min] &gt; a[j]){
-                min = j;
-            }
-        }
-        if(min != i) swap(a[i], a[min]);
-    }
-}
-</code></pre>
-<h2 id="归并排序">归并排序</h2>
-<pre><code class="language-c++">void Merge(int *a, int *b, int low, int mid, int high){
-    for(int i = low; i &lt;= high; i++){
-        a[i] = b[i];
-    }
-    for(int i = low, j = mid+1, k=i; i &lt;= mid &amp;&amp; j &lt;= high; k++){
-        if(b[i] &lt;= b[j]) a[k] = b[i++];
-        else a[k] = b[j++];
-    }
-    //下面两个while只有一个会执行
-    while(i &lt;= mid) a[k+1] = b[i++];
-    while(j &lt;= high) a[k+1] = b[j++];
-}
-void MergeSort(int *a, int low, int high){
-    int mid = (low + high) / 2;
-    if(low &lt; high){
-        MergeSort(a, low, mid);
-        MergeSort(a, mid+1, high);
-        Merge(a, b, low, mid, high);
-    }
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>

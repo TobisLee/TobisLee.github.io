@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode 215. Kth Largest Element in an Array | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1575897615211">
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576052947574">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://tobislee.github.io/">
-  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1575897615211" alt="">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576052947574" alt="">
   </a>
   <h1 class="site-title">
     Leon&#39;s Blog
@@ -132,7 +132,7 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.</p>
 <p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
 </li>
 <li>
-<p>使用c++内置函数<code>nth_element</code> ，函数用法：<code>nth_element(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组中<code>[l, r)</code>内的第<code>k</code>小的元素处在第<code>k</code>个位置上（相对位置），但是这个函数不保证其他元素有序<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
+<p>使用c++内置函数<code>nth_element</code> ，函数用法：<code>nth_element(a.begin()+l, a.begin()+k, a.begin()+r)</code> ，该函数会使<code>a</code>这个数组中<code>[l, r)</code>内的第<code>k</code>小的元素处在第<code>k</code>个位置上（相对位置），即：比他小的都在它的左侧，比它大的都在它的右侧，但是这个函数不保证其他元素有序<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
 <p>TO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>是区间长度。</p>
 <p>SO: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
 </li>

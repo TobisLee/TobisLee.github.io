@@ -1,8 +1,8 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leon&#39;s Blog</title>
+<title>Leetcode 238. Product of Array Except Self | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576052947574">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -78,44 +78,99 @@
   </div>
 </div>
 
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Leetcode 238. Product of Array Except Self
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-11
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/JbXVcow8DZ" class="post-tag">
+                  # array
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
+                  # medium
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Given an array <code>nums</code> of n integers where n &gt; 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
+<!-- more -->
+<p><strong>Example:</strong></p>
+<p>Input:  [1,2,3,4]<br>
+Output: [24,12,8,6]</p>
+<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(n).</p>
+<p><strong>Follow up:</strong><br>
+Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
+<h2 id="idea">Idea</h2>
+<ol>
+<li>使用两个数组，一个保存从开始到当前位置的前一个元素的累乘，一个保存从末尾到当前位置后一个元素的累乘，最后的结果只是将两个数组的元素相乘。<br>
+时间复杂度：<code>O(n)</code><br>
+空间复杂度：<code>O(n)</code></li>
+<li>将两个数组替换成两个整数。<br>
+时间复杂度：<code>O(n)</code><br>
+空间复杂度：<code>O(1)</code></li>
+</ol>
+<h2 id="solution-2">Solution 2</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int fromBegin = 1;
+        int fromEnd = 1;
+        vector&lt;int&gt; res(n, 1);
+        for (int i = 0; i &lt; n; i++) {
+            res[i] *= fromBegin;
+            fromBegin *= nums[i];
+            res[n-1-i] *= fromEnd;
+            fromEnd *= nums[n-i-1];
+        }
+        return res;
+    }
+};
+</code></pre>
 
-        <div class="tags-container">
-          
-            <a class="tag" href="https://tobislee.github.io//tag/JbXVcow8DZ">array</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/BkFqdoL7J">leetcode</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/9KRZd5dtFf">medium</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/IySugRq8Y">recursive</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/oFralIUQkM">tree</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/QnojPglju">dp</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/Es-PD1jY3G">graph</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/RPhSI7eps">coursera</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/NLsAUSIu4">machine learning</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/h8LMdlPaR">exercise</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/vDfV-x0DMM">git</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/suXFwY1blD">data structure</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/E2FQLUx33_">sort</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/BhOKAWPfJ">algorithm</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/5T3tsPPhKI">linked list</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/1PqNYEG8EF">linux</a>
-          
-            <a class="tag" href="https://tobislee.github.io//tag/gcq8mBYD-A">customize</a>
-          
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#solution-2">Solution 2</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://tobislee.github.io//post/leetcode-236-lowest-common-ancestor-of-a-binary-tree">
+              <h3 class="post-title">
+                Leetcode 236. Lowest Common Ancestor of a Binary Tree
+              </h3>
+            </a>
+          </div>
+        
+
+        
 
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 

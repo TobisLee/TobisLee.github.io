@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leetcode 207. Course Schedule | Leon&#39;s Blog</title>
+<title>Linux 中批量杀死进程 | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576217668426">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -81,94 +81,51 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Leetcode 207. Course Schedule
+              Linux 中批量杀死进程
             </h2>
             <div class="post-info">
               <span>
-                2019-12-06
+                2019-12-13
               </span>
               <span>
-                3 min read
+                1 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
-                  # leetcode
-                </a>
-              
-                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
-                  # medium
-                </a>
-              
-                <a href="https://tobislee.github.io//tag/Es-PD1jY3G" class="post-tag">
-                  # graph
+                <a href="https://tobislee.github.io//tag/1PqNYEG8EF" class="post-tag">
+                  # linux
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
-<!-- more -->
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: 2, [[1,0]] 
-Output: true
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0. So it is possible.
-</code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: 2, [[1,0],[0,1]]
-Output: false
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0, and to take course 0 you should
-             also have finished course 1. So it is impossible.
-</code></pre>
-<p><strong>Note:</strong></p>
+                <p>用ssh连接到服务器去跑程序时，本地主机突然卡死，重启后重新ssh到服务器，发现服务器中的程序还在跑，但已经看不到结果了，所以想杀掉进程后重新跑，于是我先通过</p>
+<blockquote>
+<p>nvidia-smi</p>
+</blockquote>
+<p>找到正在跑的进程PID，然后执行</p>
+<blockquote>
+<p>kill -9 PID</p>
+</blockquote>
+<p>杀死进程，这时显卡进程中显示程序被杀掉，但是显卡的显存还是非常高，所以程序应该还是在跑，于是执行</p>
+<blockquote>
+<p>htop</p>
+</blockquote>
+<p>查看进程，发现确实在跑，并且不止一个PID，于是执行</p>
+<blockquote>
+<p>kill -9 <code>ps -aux | grep XXXX | awk '{print $2}'</code></p>
+</blockquote>
+<p>解释一下上面的指令：</p>
 <ol>
-<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</li>
-<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
+<li><code>ps -aux：</code> 列出进程</li>
+<li><code>grep XXXX:</code> 通过grep + 管道，可以筛选出想要杀掉的进程（这里的XXXX代表着你想要杀掉的进程的标志）</li>
+<li><code>awk '{print $2}':</code> 获得筛选出来的进程信息的第二列信息，也就是进程号</li>
+<li><code>kill -9 PID:</code> 根据进程号杀掉进程</li>
 </ol>
-<h2 id="idea">Idea</h2>
-<p>其实就是判断图中是否有环，使用拓扑排序，然后将入度为0的结点放入队列中，然后依次出队列，将结点数减一，并将当前结点指向的结点的入度减一，并判断其是否为零，如果为零则加入队列，如果不为零，继续循环。</p>
-<h2 id="solution">Solution</h2>
-<pre><code class="language-cpp">class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-        // adjacent table;
-        vector&lt;vector&lt;int&gt; &gt; adj(numCourses, vector&lt;int&gt;());
-        // degree of each node
-        vector&lt;int&gt; degree(numCourses, 0);
-        for (auto &amp;p : prerequisites) {
-            adj[p[1]].push_back(p[0]);
-            degree[p[0]]++;
-        }
-        // to save the elements which are degree = 0;
-        queue&lt;int&gt; q;
-        for (int i = 0; i &lt; numCourses; i++) if (degree[i] == 0) q.push(i);
-        while (!q.empty()) {
-            int node = q.front(); q.pop();
-            numCourses--;
-            for (auto next : adj[node]) {
-                if (--degree[next] == 0) q.push(next);
-            }
-        }
-        return numCourses == 0;
-    }
-};
-</code></pre>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#idea">Idea</a></li>
-<li><a href="#solution">Solution</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -177,9 +134,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
+            <a href="https://tobislee.github.io//post/leetcode-279-perfect-squares">
               <h3 class="post-title">
-                吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习
+                Leetcode 279. Perfect Squares
               </h3>
             </a>
           </div>

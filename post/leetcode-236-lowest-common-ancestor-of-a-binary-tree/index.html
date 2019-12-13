@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode 236. Lowest Common Ancestor of a Binary Tree | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576052947574">
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576208552437">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://tobislee.github.io/">
-  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576052947574" alt="">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576208552437" alt="">
   </a>
   <h1 class="site-title">
     Leon&#39;s Blog
@@ -112,19 +112,27 @@
 <!-- more -->
 <p>Given the following binary tree:  root = [3,5,1,6,2,0,8,null,null,7,4]</p>
 <p><strong>Example 1:</strong></p>
-<p>Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1<br>
-Output: 3<br>
-Explanation: The LCA of nodes 5 and 1 is 3.</p>
+<pre><code>Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+Explanation: The LCA of nodes 5 and 1 is 3.
+</code></pre>
 <p><strong>Example 2:</strong></p>
-<p>Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4<br>
-Output: 5<br>
-Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.</p>
+<pre><code>Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+Output: 5
+Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+</code></pre>
 <p><strong>Note:</strong></p>
 <pre><code>- All of the nodes' values will be unique.
 - p and q are different and both values will exist in the binary tree.
 </code></pre>
 <h2 id="idea">Idea</h2>
-<p>递归</p>
+<p>该题使用递归去做。<br>
+该题一共有三种情况：</p>
+<ol>
+<li><code>p</code>,<code>q</code>在根节点左右子树上。</li>
+<li><code>p</code>和<code>q</code>在同一子树上，但<code>p</code>在<code>q</code>的上面</li>
+<li><code>p</code>和<code>q</code>在同一子树上，但<code>q</code>在<code>p</code>的上面</li>
+</ol>
 <h2 id="solution">Solution</h2>
 <pre><code class="language-cpp">class Solution {
 public:

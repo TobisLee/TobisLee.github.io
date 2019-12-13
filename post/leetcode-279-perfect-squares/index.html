@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leetcode 279. Perfect Squares | Leon&#39;s Blog</title>
+<meta name="description" content="脚踏实地，仰望星空" />
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576208552437">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://tobislee.github.io/">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576208552437" alt="">
+  </a>
+  <h1 class="site-title">
+    Leon&#39;s Blog
+  </h1>
+  <p class="site-description">
+    脚踏实地，仰望星空
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/TobisLee" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/tlss55159552" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Leetcode 279. Perfect Squares
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-12-13
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://tobislee.github.io//tag/Amq9CjR9A" class="post-tag">
+                  # math
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/QnojPglju" class="post-tag">
+                  # dp
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
+                  # medium
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Given a positive integer n, find the least number of perfect square numbers (for example, <code>1, 4, 9, 16, ...</code>) which sum to n.</p>
+<!-- more -->
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: n = 12
+Output: 3 
+Explanation: 12 = 4 + 4 + 4.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+</code></pre>
+<h2 id="idea">Idea</h2>
+<ol>
+<li>使用dp，dp数组表示构成当前这个数的最少平方数的个数，状态转移方程：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mi>j</mi><mo>∗</mo><mi>j</mi><mo>]</mo><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">dp[i] = min(dp[i], dp[i-j*j]+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+<li>使用数学方法<br>
+用数学理论可以证明这个问题只有四种答案，即<code>1,2,3,4</code>。<br>
+由<code>1</code>个平方数构成的就是平方数<br>
+由<code>2</code>个平方数构成的数的特点：减掉一个平方数，之后还是一个平方数<br>
+由<code>4</code>个平方数构成的数应该满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>4</mn><mi>k</mi></msup><mo>(</mo><mn>8</mn><mo>∗</mo><mi>m</mi><mo>+</mo><mn>7</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">4^k(8*m+7)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7</span><span class="mclose">)</span></span></span></span>。<br>
+剩下的就是由<code>3</code>个平方数构成的数</li>
+</ol>
+<h2 id="solution-1-dp">Solution 1 --- dp</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int numSquares(int n) {
+        vector&lt;int&gt; dp(n+1, INT_MAX);
+        dp[0] = 0;
+        for (int i = 1; i &lt;= n; i++) {
+            for (int j = 1; j*j &lt;= i; j++) {
+                dp[i] = min(dp[i], dp[i - j*j]+1);
+            }
+        }
+        return dp.back();
+    }
+};
+</code></pre>
+<h2 id="solution-2-math">Solution 2 --- math</h2>
+<pre><code class="language-cpp">class Solution {
+private:
+    bool isSquare(int n) {
+        int sqrt_n = (int)sqrt(n);
+        return (sqrt_n*sqrt_n == n);
+    }
+public:
+    int numSquares(int n) {
+        if (isSquare(n)) {return 1;}
+        while ((n &amp; 3) == 0) {
+            // n%4 == 0
+            n &gt;&gt;= 2;
+        }
+        if ((n &amp; 7) == 7) {return 4;}
+        int sqrt_n = (int)sqrt(n);
+        for (int i =1; i &lt;= sqrt_n; i++) {
+            if (isSquare(n-i*i)) {return 2;}
+        }
+        return 3;
+    }
+};
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#idea">Idea</a></li>
+<li><a href="#solution-1-dp">Solution 1 --- dp</a></li>
+<li><a href="#solution-2-math">Solution 2 --- math</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://tobislee.github.io//post/leetcode-240-search-a-2d-matrix-ii">
+              <h3 class="post-title">
+                Leetcode 240. Search a 2D Matrix II
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://tobislee.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

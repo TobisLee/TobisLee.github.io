@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leetcode 238. Product of Array Except Self | Leon&#39;s Blog</title>
+<title>Leetcode 240. Search a 2D Matrix II | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576208552437">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -81,11 +81,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Leetcode 238. Product of Array Except Self
+              Leetcode 240. Search a 2D Matrix II
             </h2>
             <div class="post-info">
               <span>
-                2019-12-11
+                2019-12-12
               </span>
               <span>
                 2 min read
@@ -107,39 +107,49 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Given an array <code>nums</code> of n integers where n &gt; 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
+                <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<ul>
+<li>Integers in each row are sorted in ascending from left to right.</li>
+<li>Integers in each column are sorted in ascending from top to bottom.</li>
+</ul>
 <!-- more -->
 <p><strong>Example:</strong></p>
-<pre><code>Input:  [1,2,3,4]
-Output: [24,12,8,6]
+<p>Consider the following matrix:</p>
+<pre><code>[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
 </code></pre>
-<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(n).</p>
-<p><strong>Follow up:</strong><br>
-Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
+<p>Given target = <code>5</code>, return <code>true</code>.</p>
+<p>Given target = <code>20</code>, return <code>false</code>.</p>
 <h2 id="idea">Idea</h2>
+<p>由于该题中的矩阵是比较特殊的矩阵，为了减少搜索空间，此题应该从右上角的元素开始检索。</p>
 <ol>
-<li>使用两个数组，一个保存从开始到当前位置的前一个元素的累乘，一个保存从末尾到当前位置后一个元素的累乘，最后的结果只是将两个数组的元素相乘。<br>
-时间复杂度：<code>O(n)</code><br>
-空间复杂度：<code>O(n)</code></li>
-<li>将两个数组替换成两个整数。<br>
-时间复杂度：<code>O(n)</code><br>
-空间复杂度：<code>O(1)</code></li>
+<li>如果<code>target</code>=右上角的元素，<code>return true</code></li>
+<li>如果<code>target&lt;</code>右上角的元素，说明这一列的元素都比<code>target</code>要大，所以应该到左边一列去找</li>
+<li>如果<code>target&gt;</code>右上角的元素，说明这一行的元素都比<code>target</code>要小，所以应该到下边一行去找</li>
 </ol>
-<h2 id="solution-2">Solution 2</h2>
+<p>时间复杂度：<code>O(m+n)</code><br>
+空间复杂度：<code>O(1)</code></p>
+<h2 id="solution">Solution</h2>
 <pre><code class="language-cpp">class Solution {
 public:
-    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) {
-        int n = nums.size();
-        int fromBegin = 1;
-        int fromEnd = 1;
-        vector&lt;int&gt; res(n, 1);
-        for (int i = 0; i &lt; n; i++) {
-            res[i] *= fromBegin;
-            fromBegin *= nums[i];
-            res[n-1-i] *= fromEnd;
-            fromEnd *= nums[n-i-1];
+    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
+        int m = matrix.size();
+        int n = m ? matrix[0].size() : 0;
+        int r = 0;
+        int c = n-1;
+        while (r&lt;m &amp;&amp; c&gt;=0) {
+            if (matrix[r][c] == target) {
+                return true;
+            }
+            if (matrix[r][c] &gt; target) c--;
+            else r++;
         }
-        return res;
+        return false;
     }
 };
 </code></pre>
@@ -150,7 +160,7 @@ public:
 <li>
 <ul>
 <li><a href="#idea">Idea</a></li>
-<li><a href="#solution-2">Solution 2</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -163,9 +173,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/leetcode-236-lowest-common-ancestor-of-a-binary-tree">
+            <a href="https://tobislee.github.io//post/leetcode-238-product-of-array-except-self">
               <h3 class="post-title">
-                Leetcode 236. Lowest Common Ancestor of a Binary Tree
+                Leetcode 238. Product of Array Except Self
               </h3>
             </a>
           </div>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tobislee.github.io/</id>
     <title>Leon&apos;s Blog</title>
-    <updated>2019-12-14T12:43:22.744Z</updated>
+    <updated>2019-12-16T08:37:09.993Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tobislee.github.io/"/>
     <link rel="self" href="https://tobislee.github.io//atom.xml"/>
@@ -10,6 +10,51 @@
     <logo>https://tobislee.github.io//images/avatar.png</logo>
     <icon>https://tobislee.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Leon&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Leetcode 300. Longest Increasing Subsequence]]></title>
+        <id>https://tobislee.github.io//post/leetcode-300-longest-increasing-subsequence</id>
+        <link href="https://tobislee.github.io//post/leetcode-300-longest-increasing-subsequence">
+        </link>
+        <updated>2019-12-16T08:21:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
+<!-- more -->
+<p><strong>Example:</strong></p>
+<pre><code>Input: [10,9,2,5,3,7,101,18]
+Output: 4 
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+</code></pre>
+<p><strong>Note:</strong></p>
+<ul>
+<li>There may be more than one LIS combination, it is only necessary for you to return the length.</li>
+<li>Your algorithm should run in <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> complexity.</li>
+</ul>
+<p><strong>Follow up:</strong> Could you improve it to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> time complexity?</p>
+<h2 id="idea">Idea</h2>
+<p>准备一个vector，用来保存最长递增子序列，遍历原数组，当原数组中的某个值比vector中的所有值都大，那么就放到最后，否则，选择vector中第一个比它大的值，将它替换。</p>
+<p>时间复杂度:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><br>
+空间复杂度:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<h2 id="solution">Solution</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int lengthOfLIS(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; lis;
+        for (int i = 0; i &lt; nums.size(); i++) {
+            auto iter = lower_bound(lis.begin(), lis.end(), nums[i]);
+            if(iter == lis.end()) lis.push_back(nums[i]);
+            else *iter = nums[i];
+        }
+        for (int i=0; i &lt; lis.size();i++) {
+            cout &lt;&lt; lis[i] &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+        return lis.size();
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Leetcode 287. Find the Duplicate Number]]></title>
         <id>https://tobislee.github.io//post/leetcode-287-find-the-duplicate-number</id>
@@ -29,11 +74,12 @@ Output: 2
 Output: 3
 </code></pre>
 <p><strong>Note:</strong></p>
-<pre><code>1. You **must not** modify the array (assume the array is read only).
-2. You must use only constant,$O(1)$ extra space.
-3. Your runtime complexity should be less than $O(n^2)$.
-4. There is only one duplicate number in the array, but it could be repeated more than once.
-</code></pre>
+<ol>
+<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
+<li>You must use only constant,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> extra space.</li>
+<li>Your runtime complexity should be less than <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
 <h2 id="idea">Idea</h2>
 <p>将数组的元素看成数组下标，可以发现，这是一个类似于找链表中的环的问题，使用快慢指针可以解决这种问题。<br>
 时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><br>
@@ -655,78 +701,6 @@ public:
         return numCourses == 0;
     }
 };
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[吴恩达《Coursera机器学习》课程笔记（4）- 神经网络 练习]]></title>
-        <id>https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise</id>
-        <link href="https://tobislee.github.io//post/Coursera-Machine-Learning-04-Exercise">
-        </link>
-        <updated>2019-01-07T23:09:42.000Z</updated>
-        <summary type="html"><![CDATA[<p>吴恩达机器学习第四周 神经网络实验 主要代码</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>吴恩达机器学习第四周 神经网络实验 主要代码</p>
-<!-- more -->
-<h2 id="前向传播">前向传播</h2>
-<p>条件：X中存着5000个黑白的数字图片(20 pixels * 20 pixels)，y中存着每张图片对应的数字（1-10），其中数字10代表图片0，三层神经网络，输入层400个节点，隐藏层25个节点，输出层10个节点</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mn>5000</mn><mo>×</mo><mn>400</mn></mrow></msup><mo separator="true">,</mo><mtext>  </mtext><mi>y</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mn>5000</mn><mo>×</mo><mn>1</mn></mrow></msup><mo separator="true">,</mo><mspace linebreak="newline"></mspace><msup><mi mathvariant="normal">Θ</mi><mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow></msup><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mn>25</mn><mo>×</mo><mn>401</mn></mrow></msup><mo separator="true">,</mo><mtext>  </mtext><msup><mi mathvariant="normal">Θ</mi><mrow><mo>(</mo><mn>2</mn><mo>)</mo></mrow></msup><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mn>10</mn><mo>×</mo><mn>26</mn></mrow></msup></mrow><annotation encoding="application/x-tex">X \in \mathbb R^{5000 \times 400}, \;
-y \in \mathbb R^{5000 \times 1}, \\
-\Theta^{(1)} \in \mathbb R^{25 \times 401}, \;
-\Theta^{(2)} \in \mathbb R^{10 \times 26}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.058548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mbin mtight">×</span><span class="mord mtight">4</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.058548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mbin mtight">×</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.9771em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.13244em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">5</span><span class="mbin mtight">×</span><span class="mord mtight">4</span><span class="mord mtight">0</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">2</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.864108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbb">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mbin mtight">×</span><span class="mord mtight">2</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
-<pre><code class="language-matlab">X = [ones(m, 1) X]; 		% add bias unit column
-K = num_labels;				% K classes
-for i = 1 : m
-	X_i = X(i , :);  		% get ith example: 1 * 401
-	z_2 = X_i * Theta1';	% z_2: 1 * 25
-	a_2 = sigmoid(z_2);		% activation function
-	a_2 = [1 a_2];			% add bias unit: 1 * 26
-	z_3 = a_2 * Theta2';	% z_3: 1 * 10
-	h_theta_X_i = sigmoid(z_3);
-	
-	y_i = zeros(1, K)		% y_i: 1 * 10
-	y_i(y(i)) = 1;			% if y(i) = 3 then y_i: [0 0 1 0 0 0 0 0 0 0]
-	J = J + sum(-1 * y_i .* log(h_theta_X_i) - (1 - y_i) .* log(1 - h_theta_X_i));
-end
-J = 1 / m * J;
-
-% add regularizition
-temp_theta1 = Theta1;
-temp_theta2 = Theta2;
-temp_theta1(:, 1) = [];          % delete theta1 first column
-theta1_unroll = temp_theta1(:);  % unroll theta1
-temp_theta2(:, 1) = [];          % delete theta2 first column
-theta2_unroll = temp_theta2(:);  % unroll theta2
-
-J = J + lambda / (2 * m) * (theta1_unroll' * theta1_unroll + theta2_unroll' * theta2_unroll);
-</code></pre>
-<h2 id="使用反向传播计算梯度">使用反向传播计算梯度</h2>
-<pre><code class="language-matlab">Delta_1 = zeros(size(Theta1));
-Delta_2 = zeros(size(Theta2));
-
-for i = 1 : m
-    a_1 = X(i, :);          % 1 * 401
-    z_2 = a_1 * Theta1';    % 1 * 25
-    a_2 = sigmoid(z_2);
-    a_2 = [1 a_2];          % 1 * 26
-    a_3 = sigmoid(a_2 * Theta2');    % 1 * 10
-    y_i = zeros(1,K);
-    y_i(y(i)) = 1;
-    delta_3 = a_3 - y_i;             % 1 * 10
-    delta_2 = delta_3 * Theta2 .* sigmoidGradient([1 z_2]);
-    Delta_1 = Delta_1 + delta_2(2:end)' * a_1;
-    Delta_2 = Delta_2 + delta_3' * a_2;
-end
-
-% add regularization
-Theta1(:, 1) = 0;
-Theta2(:, 1) = 0;
-Theta1_grad = 1 / m * Delta_1 + lambda / m * Theta1;
-Theta2_grad = 1 / m * Delta_2 + lambda / m * Theta2;
-
-% Unroll gradients
-grad = [Theta1_grad(:) ; Theta2_grad(:)];
 </code></pre>
 ]]></content>
     </entry>

@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leetcode 240. Search a 2D Matrix II | Leon&#39;s Blog</title>
+<title>Leetcode 300. Longest Increasing Subsequence | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576485425569">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -81,11 +81,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Leetcode 240. Search a 2D Matrix II
+              Leetcode 300. Longest Increasing Subsequence
             </h2>
             <div class="post-info">
               <span>
-                2019-12-12
+                2019-12-16
               </span>
               <span>
                 2 min read
@@ -107,49 +107,38 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<ul>
-<li>Integers in each row are sorted in ascending from left to right.</li>
-<li>Integers in each column are sorted in ascending from top to bottom.</li>
-</ul>
+                <p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
 <!-- more -->
 <p><strong>Example:</strong></p>
-<p>Consider the following matrix:</p>
-<pre><code>[
-  [1,   4,  7, 11, 15],
-  [2,   5,  8, 12, 19],
-  [3,   6,  9, 16, 22],
-  [10, 13, 14, 17, 24],
-  [18, 21, 23, 26, 30]
-]
+<pre><code>Input: [10,9,2,5,3,7,101,18]
+Output: 4 
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
 </code></pre>
-<p>Given target = <code>5</code>, return <code>true</code>.</p>
-<p>Given target = <code>20</code>, return <code>false</code>.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>There may be more than one LIS combination, it is only necessary for you to return the length.</li>
+<li>Your algorithm should run in <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> complexity.</li>
+</ul>
+<p><strong>Follow up:</strong> Could you improve it to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> time complexity?</p>
 <h2 id="idea">Idea</h2>
-<p>由于该题中的矩阵是比较特殊的矩阵，为了减少搜索空间，此题应该从右上角的元素开始检索。</p>
-<ol>
-<li>如果<code>target</code>=右上角的元素，<code>return true</code></li>
-<li>如果<code>target&lt;</code>右上角的元素，说明这一列的元素都比<code>target</code>要大，所以应该到左边一列去找</li>
-<li>如果<code>target&gt;</code>右上角的元素，说明这一行的元素都比<code>target</code>要小，所以应该到下边一行去找</li>
-</ol>
-<p>时间复杂度：<code>O(m+n)</code><br>
-空间复杂度：<code>O(1)</code></p>
+<p>准备一个vector，用来保存最长递增子序列，遍历原数组，当原数组中的某个值比vector中的所有值都大，那么就放到最后，否则，选择vector中第一个比它大的值，将它替换。</p>
+<p>时间复杂度:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><br>
+空间复杂度:<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
 <h2 id="solution">Solution</h2>
 <pre><code class="language-cpp">class Solution {
 public:
-    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
-        int m = matrix.size();
-        int n = m ? matrix[0].size() : 0;
-        int r = 0;
-        int c = n-1;
-        while (r&lt;m &amp;&amp; c&gt;=0) {
-            if (matrix[r][c] == target) {
-                return true;
-            }
-            if (matrix[r][c] &gt; target) c--;
-            else r++;
+    int lengthOfLIS(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; lis;
+        for (int i = 0; i &lt; nums.size(); i++) {
+            auto iter = lower_bound(lis.begin(), lis.end(), nums[i]);
+            if(iter == lis.end()) lis.push_back(nums[i]);
+            else *iter = nums[i];
         }
-        return false;
+        for (int i=0; i &lt; lis.size();i++) {
+            cout &lt;&lt; lis[i] &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+        return lis.size();
     }
 };
 </code></pre>
@@ -173,9 +162,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/leetcode-238-product-of-array-except-self">
+            <a href="https://tobislee.github.io//post/leetcode-287-find-the-duplicate-number">
               <h3 class="post-title">
-                Leetcode 238. Product of Array Except Self
+                Leetcode 287. Find the Duplicate Number
               </h3>
             </a>
           </div>

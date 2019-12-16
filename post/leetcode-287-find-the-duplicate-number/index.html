@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Leetcode 287. Find the Duplicate Number | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
-<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576327387521">
+<link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576485425569">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://tobislee.github.io//styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://tobislee.github.io/">
-  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576327387521" alt="">
+  <img class="avatar" src="https://tobislee.github.io//images/avatar.png?v=1576485425569" alt="">
   </a>
   <h1 class="site-title">
     Leon&#39;s Blog
@@ -122,11 +122,12 @@ Output: 2
 Output: 3
 </code></pre>
 <p><strong>Note:</strong></p>
-<pre><code>1. You **must not** modify the array (assume the array is read only).
-2. You must use only constant,$O(1)$ extra space.
-3. Your runtime complexity should be less than $O(n^2)$.
-4. There is only one duplicate number in the array, but it could be repeated more than once.
-</code></pre>
+<ol>
+<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
+<li>You must use only constant,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> extra space.</li>
+<li>Your runtime complexity should be less than <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
 <h2 id="idea">Idea</h2>
 <p>将数组的元素看成数组下标，可以发现，这是一个类似于找链表中的环的问题，使用快慢指针可以解决这种问题。<br>
 时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><br>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tobislee.github.io/</id>
     <title>Leon&apos;s Blog</title>
-    <updated>2019-12-16T08:37:09.993Z</updated>
+    <updated>2019-12-17T12:52:27.900Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tobislee.github.io/"/>
     <link rel="self" href="https://tobislee.github.io//atom.xml"/>
@@ -10,6 +10,48 @@
     <logo>https://tobislee.github.io//images/avatar.png</logo>
     <icon>https://tobislee.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Leon&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Leetcode 309. Best Time to Buy and Sell Stock with Cooldown]]></title>
+        <id>https://tobislee.github.io//post/leetcode-309-best-time-to-buy-and-sell-stock-with-cooldown</id>
+        <link href="https://tobislee.github.io//post/leetcode-309-best-time-to-buy-and-sell-stock-with-cooldown">
+        </link>
+        <updated>2019-12-17T12:45:02.000Z</updated>
+        <summary type="html"><![CDATA[<p>Say you have an array for which the <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span> element is the price of a given stock on day <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>.Design an algorithm to find the maximum profit.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Say you have an array for which the <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span> element is the price of a given stock on day <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>.Design an algorithm to find the maximum profit.</p>
+<!-- more -->
+<p>You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:</p>
+<ul>
+<li>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</li>
+<li>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Input: [1,2,3,0,2]
+Output: 3 
+Explanation: transactions = [buy, sell, cooldown, buy, sell]
+</code></pre>
+<h2 id="idea">Idea</h2>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/17/GAPRBQosue2yUVv.jpg" alt="Best Time to Buy and Sell Stock with Cooldown.jpg"></figure>
+<h2 id="solution">Solution</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int maxProfit(vector&lt;int&gt;&amp; prices) {
+        if (prices.size() &lt; 2) return 0;
+        int s0 = 0;             // rest, can buy
+        int s1 = -prices[0];    // rest, can sell
+        int s2 = 0;             // sold, just can rest
+        for (int i = 0; i &lt; prices.size(); i++) {
+            int last_s2 = s2;
+            s2 = s1+prices[i];
+            s1 = max(s1, s0-prices[i]);
+            s0 = max(s0, last_s2);
+        }
+        return max(s0, s2);
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Leetcode 300. Longest Increasing Subsequence]]></title>
         <id>https://tobislee.github.io//post/leetcode-300-longest-increasing-subsequence</id>
@@ -640,68 +682,6 @@ public:
 </li>
 </ol>
 </section>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Leetcode 207. Course Schedule]]></title>
-        <id>https://tobislee.github.io//post/leetcode-207-course-schedule</id>
-        <link href="https://tobislee.github.io//post/leetcode-207-course-schedule">
-        </link>
-        <updated>2019-12-06T14:27:01.000Z</updated>
-        <summary type="html"><![CDATA[<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
-<!-- more -->
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: 2, [[1,0]] 
-Output: true
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0. So it is possible.
-</code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: 2, [[1,0],[0,1]]
-Output: false
-Explanation: There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0, and to take course 0 you should
-             also have finished course 1. So it is impossible.
-</code></pre>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</li>
-<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
-</ol>
-<h2 id="idea">Idea</h2>
-<p>其实就是判断图中是否有环，使用拓扑排序，然后将入度为0的结点放入队列中，然后依次出队列，将结点数减一，并将当前结点指向的结点的入度减一，并判断其是否为零，如果为零则加入队列，如果不为零，继续循环。</p>
-<h2 id="solution">Solution</h2>
-<pre><code class="language-cpp">class Solution {
-public:
-    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
-        // adjacent table;
-        vector&lt;vector&lt;int&gt; &gt; adj(numCourses, vector&lt;int&gt;());
-        // degree of each node
-        vector&lt;int&gt; degree(numCourses, 0);
-        for (auto &amp;p : prerequisites) {
-            adj[p[1]].push_back(p[0]);
-            degree[p[0]]++;
-        }
-        // to save the elements which are degree = 0;
-        queue&lt;int&gt; q;
-        for (int i = 0; i &lt; numCourses; i++) if (degree[i] == 0) q.push(i);
-        while (!q.empty()) {
-            int node = q.front(); q.pop();
-            numCourses--;
-            for (auto next : adj[node]) {
-                if (--degree[next] == 0) q.push(next);
-            }
-        }
-        return numCourses == 0;
-    }
-};
-</code></pre>
 ]]></content>
     </entry>
 </feed>

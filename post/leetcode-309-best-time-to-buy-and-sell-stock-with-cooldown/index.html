@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leetcode 287. Find the Duplicate Number | Leon&#39;s Blog</title>
+<title>Leetcode 309. Best Time to Buy and Sell Stock with Cooldown | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576587072627">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -81,22 +81,18 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Leetcode 287. Find the Duplicate Number
+              Leetcode 309. Best Time to Buy and Sell Stock with Cooldown
             </h2>
             <div class="post-info">
               <span>
-                2019-12-14
+                2019-12-17
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://tobislee.github.io//tag/So3kwPHx9" class="post-tag">
-                  # two-pointers
-                </a>
-              
-                <a href="https://tobislee.github.io//tag/JbXVcow8DZ" class="post-tag">
-                  # array
+                <a href="https://tobislee.github.io//tag/QnojPglju" class="post-tag">
+                  # dp
                 </a>
               
                 <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
@@ -111,49 +107,35 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
+                <p>Say you have an array for which the <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msup></mrow><annotation encoding="application/x-tex">i^{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span></span></span></span></span> element is the price of a given stock on day <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>.Design an algorithm to find the maximum profit.</p>
 <!-- more -->
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: [1,3,4,2,2]
-Output: 2
+<p>You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:</p>
+<ul>
+<li>You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).</li>
+<li>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Input: [1,2,3,0,2]
+Output: 3 
+Explanation: transactions = [buy, sell, cooldown, buy, sell]
 </code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: [3,1,3,4,2]
-Output: 3
-</code></pre>
-<p><strong>Note:</strong></p>
-<ol>
-<li>You <strong>must not</strong> modify the array (assume the array is read only).</li>
-<li>You must use only constant,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> extra space.</li>
-<li>Your runtime complexity should be less than <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
-<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
-</ol>
 <h2 id="idea">Idea</h2>
-<p>将数组的元素看成数组下标，可以发现，这是一个类似于找链表中的环的问题，使用快慢指针可以解决这种问题。<br>
-时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span><br>
-空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/12/17/GAPRBQosue2yUVv.jpg" alt="Best Time to Buy and Sell Stock with Cooldown.jpg"></figure>
+<h2 id="solution">Solution</h2>
 <pre><code class="language-cpp">class Solution {
 public:
-    int findDuplicate(vector&lt;int&gt;&amp; nums) {
-        if (nums.size() &gt; 1)
-        {
-            int slow = nums[0];
-            int fast = nums[nums[0]];
-            while (slow != fast)
-            {
-                slow = nums[slow];
-                fast = nums[nums[fast]];
-            }
-
-            fast = 0;
-            while (fast != slow)
-            {
-                fast = nums[fast];
-                slow = nums[slow];
-            }
-            return slow;
+    int maxProfit(vector&lt;int&gt;&amp; prices) {
+        if (prices.size() &lt; 2) return 0;
+        int s0 = 0;             // rest, can buy
+        int s1 = -prices[0];    // rest, can sell
+        int s2 = 0;             // sold, just can rest
+        for (int i = 0; i &lt; prices.size(); i++) {
+            int last_s2 = s2;
+            s2 = s1+prices[i];
+            s1 = max(s1, s0-prices[i]);
+            s0 = max(s0, last_s2);
         }
-        return -1;
+        return max(s0, s2);
     }
 };
 </code></pre>
@@ -164,6 +146,7 @@ public:
 <li>
 <ul>
 <li><a href="#idea">Idea</a></li>
+<li><a href="#solution">Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -176,9 +159,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/linux-zhong-pi-liang-sha-si-jin-cheng">
+            <a href="https://tobislee.github.io//post/leetcode-300-longest-increasing-subsequence">
               <h3 class="post-title">
-                Linux 中批量杀死进程
+                Leetcode 300. Longest Increasing Subsequence
               </h3>
             </a>
           </div>

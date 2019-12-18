@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Leetcode 238. Product of Array Except Self | Leon&#39;s Blog</title>
+<title>Leetcode 322. Coin Change | Leon&#39;s Blog</title>
 <meta name="description" content="脚踏实地，仰望星空" />
 <link rel="shortcut icon" href="https://tobislee.github.io//favicon.ico?v=1576676625046">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -81,65 +81,80 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Leetcode 238. Product of Array Except Self
+              Leetcode 322. Coin Change
             </h2>
             <div class="post-info">
               <span>
-                2019-12-11
+                2019-12-18
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
-              
-                <a href="https://tobislee.github.io//tag/JbXVcow8DZ" class="post-tag">
-                  # array
-                </a>
-              
-                <a href="https://tobislee.github.io//tag/BkFqdoL7J" class="post-tag">
-                  # leetcode
-                </a>
-              
-                <a href="https://tobislee.github.io//tag/9KRZd5dtFf" class="post-tag">
-                  # medium
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>Given an array <code>nums</code> of n integers where n &gt; 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
+                <p>You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return <code>-1</code>.</p>
 <!-- more -->
-<p><strong>Example:</strong></p>
-<pre><code>Input:  [1,2,3,4]
-Output: [24,12,8,6]
-</code></pre>
-<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(n).</p>
-<p><strong>Follow up:</strong><br>
-Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
+<p><strong>Example 1:</strong></p>
+<p>Input: coins = [1, 2, 5], amount = 11<br>
+Output: 3<br>
+Explanation: 11 = 5 + 5 + 1</p>
+<p><strong>Example 2:</strong></p>
+<p>Input: coins = [2], amount = 3<br>
+Output: -1</p>
+<p><strong>Note:</strong><br>
+You may assume that you have an infinite number of each kind of coin.</p>
 <h2 id="idea">Idea</h2>
 <ol>
-<li>使用两个数组，一个保存从开始到当前位置的前一个元素的累乘，一个保存从末尾到当前位置后一个元素的累乘，最后的结果只是将两个数组的元素相乘。<br>
-时间复杂度：<code>O(n)</code><br>
-空间复杂度：<code>O(n)</code></li>
-<li>将两个数组替换成两个整数。<br>
-时间复杂度：<code>O(n)</code><br>
-空间复杂度：<code>O(1)</code></li>
+<li>使用dp，<code>dp[i]</code>代表凑齐<code>amount=i</code>最少需要多少硬币。状态转移方程<code>dp[i] = min(dp[i], dp[i-c] + 1)</code></li>
+<li>使用贪心，思想类似于日常生活中找钱。</li>
 </ol>
+<h2 id="solution-1">Solution 1</h2>
+<pre><code class="language-cpp">class Solution {
+public:
+    int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
+        vector&lt;int&gt; need(amount+1, amount+1);
+        need[0] = 0;
+        for (int c : coins) {
+            for (int a = c; a &lt;= amount; a++) {
+                need[a] = min(need[a], need[a-c]+1);
+            }
+        }
+        return need.back() &gt; amount ? -1 : need.back();
+    }
+};
+</code></pre>
 <h2 id="solution-2">Solution 2</h2>
 <pre><code class="language-cpp">class Solution {
 public:
-    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) {
-        int n = nums.size();
-        int fromBegin = 1;
-        int fromEnd = 1;
-        vector&lt;int&gt; res(n, 1);
-        for (int i = 0; i &lt; n; i++) {
-            res[i] *= fromBegin;
-            fromBegin *= nums[i];
-            res[n-1-i] *= fromEnd;
-            fromEnd *= nums[n-i-1];
+    int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
+        //按从大到小的顺序对coin面值进行排序
+        sort(coins.rbegin(), coins.rend());
+        
+        int ans = amount+1;
+        coinHelper(coins, amount, 0, 0, ans);
+        return ans == amount + 1? -1 : ans;
+        
+    }
+private:
+//idx为遍历到coins的下标，curr为当前的总coin数
+    void coinHelper(vector&lt;int&gt;&amp; coins, int amount, int idx, int curr, int&amp; ans){
+        if(amount == 0){
+            ans = min(ans, curr);//找到了一个解，没必要再继续 (再往下只会coins数增多)
+            return;
         }
-        return res;
+        
+        // coins枚举完毕，amount仍然 &gt; 0，此组合不可行
+        if (idx == coins.size()) return;
+        
+        // combination for coin: 0 ~ amount/coin
+        const int coin = coins[idx];
+        
+        //coin面值从大到小，所以这样是可行的
+        for(int i = amount/coin;i&gt;=0 &amp;&amp; curr+i&lt;ans;i--)
+            coinHelper(coins, amount-i*coin, idx+1, curr + i, ans);        
     }
 };
 </code></pre>
@@ -150,6 +165,7 @@ public:
 <li>
 <ul>
 <li><a href="#idea">Idea</a></li>
+<li><a href="#solution-1">Solution 1</a></li>
 <li><a href="#solution-2">Solution 2</a></li>
 </ul>
 </li>
@@ -163,9 +179,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://tobislee.github.io//post/leetcode-236-lowest-common-ancestor-of-a-binary-tree">
+            <a href="https://tobislee.github.io//post/leetcode-309-best-time-to-buy-and-sell-stock-with-cooldown">
               <h3 class="post-title">
-                Leetcode 236. Lowest Common Ancestor of a Binary Tree
+                Leetcode 309. Best Time to Buy and Sell Stock with Cooldown
               </h3>
             </a>
           </div>
